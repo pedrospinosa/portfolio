@@ -2,9 +2,9 @@ name: Deploy Portfolio to GitHub Pages
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, master ]
   pull_request:
-    branches: [ main ]
+    branches: [ main, master ]
 
 jobs:
   build-and-deploy:
@@ -27,77 +27,49 @@ jobs:
     - name: Install dependencies
       run: uv sync
       
-    - name: Build static files
+    - name: Build static site
       run: |
-        # Create a simple static build script
-        python -c "
-        import os
-        import shutil
-        from pathlib import Path
-        
         # Create dist directory
-        dist_dir = Path('dist')
-        dist_dir.mkdir(exist_ok=True)
+        mkdir -p dist
         
         # Copy static files
-        if Path('static').exists():
-            shutil.copytree('static', dist_dir / 'static', dirs_exist_ok=True)
+        cp -r static dist/
         
         # Copy templates
-        if Path('templates').exists():
-            shutil.copytree('templates', dist_dir / 'templates', dirs_exist_ok=True)
+        cp -r templates dist/
         
-        # Create a simple index.html for GitHub Pages
-        index_content = '''<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pedro Spinosa - Portfolio</title>
-    <meta name="description" content="ML Engineer @ Nubank | AI Platform | MLOps & Infra">
-    <meta http-equiv="refresh" content="0; url=https://your-portfolio-domain.com">
-    <style>
-        body { 
-            font-family: Arial, sans-serif; 
-            text-align: center; 
-            padding: 50px; 
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-        .container { max-width: 600px; margin: 0 auto; }
-        h1 { font-size: 2.5rem; margin-bottom: 1rem; }
-        p { font-size: 1.2rem; margin-bottom: 2rem; }
-        .btn { 
-            display: inline-block; 
-            padding: 12px 24px; 
-            background: #2563eb; 
-            color: white; 
-            text-decoration: none; 
-            border-radius: 8px; 
-            transition: background 0.3s ease;
-        }
-        .btn:hover { background: #1d4ed8; }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Pedro Spinosa</h1>
-        <p>ML Engineer @ Nubank | AI Platform | MLOps & Infra</p>
-        <p>Redirecting to portfolio...</p>
-        <a href="https://your-portfolio-domain.com" class="btn">View Portfolio</a>
-    </div>
-</body>
-</html>'''
+        # Create a static HTML file with embedded data
+        python -c "
+        import json
+        from src.main import portfolio_data
         
-        with open(dist_dir / 'index.html', 'w') as f:
-            f.write(index_content)
+        # Read the template
+        with open('templates/index.html', 'r') as f:
+            template_content = f.read()
         
-        print('Static files built successfully!')
+        # Replace template variables with actual data
+        html_content = template_content.replace('{{ portfolio.name }}', portfolio_data.name)
+        html_content = html_content.replace('{{ portfolio.title }}', portfolio_data.title)
+        html_content = html_content.replace('{{ portfolio.location }}', portfolio_data.location)
+        html_content = html_content.replace('{{ portfolio.summary }}', portfolio_data.summary)
+        html_content = html_content.replace('{{ portfolio.email }}', portfolio_data.email)
+        html_content = html_content.replace('{{ portfolio.linkedin }}', portfolio_data.linkedin)
+        html_content = html_content.replace('{{ portfolio.github }}', portfolio_data.github)
+        
+        # Replace static file paths
+        html_content = html_content.replace('{{ url_for(\'static\', path=\'/css/style.css\') }}', './static/css/style.css')
+        html_content = html_content.replace('{{ url_for(\'static\', path=\'/js/main.js\') }}', './static/js/main.js')
+        
+        # Write the static HTML file
+        with open('dist/index.html', 'w') as f:
+            f.write(html_content)
+        
+        print('Static site built successfully!')
         "
         
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
-      if: github.ref == 'refs/heads/main'
+      if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./dist 
