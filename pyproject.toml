@@ -1,0 +1,28 @@
+[project]
+name = "portfolio-backend"
+version = "0.1.0"
+description = "Pedro Spinosa's Portfolio Backend"
+authors = [
+    {name = "Pedro Spinosa", email = "spinosaphb@gmail.com"},
+]
+dependencies = [
+    "fastapi>=0.116.1",
+    "uvicorn>=0.35.0",
+    "jinja2>=3.1.6",
+    "python-multipart>=0.0.20",
+]
+requires-python = ">=3.11"
+readme = "README.md"
+
+[project.scripts]
+portfolio = "src.main:app"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src"]
+
+[tool.uv]
+dev-dependencies = []

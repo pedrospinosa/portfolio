@@ -1,0 +1,103 @@
+name: Deploy Portfolio to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+        
+    - name: Install uv
+      uses: astral-sh/setup-uv@v2
+      with:
+        version: "latest"
+        
+    - name: Install dependencies
+      run: uv sync
+      
+    - name: Build static files
+      run: |
+        # Create a simple static build script
+        python -c "
+        import os
+        import shutil
+        from pathlib import Path
+        
+        # Create dist directory
+        dist_dir = Path('dist')
+        dist_dir.mkdir(exist_ok=True)
+        
+        # Copy static files
+        if Path('static').exists():
+            shutil.copytree('static', dist_dir / 'static', dirs_exist_ok=True)
+        
+        # Copy templates
+        if Path('templates').exists():
+            shutil.copytree('templates', dist_dir / 'templates', dirs_exist_ok=True)
+        
+        # Create a simple index.html for GitHub Pages
+        index_content = '''<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedro Spinosa - Portfolio</title>
+    <meta name="description" content="ML Engineer @ Nubank | AI Platform | MLOps & Infra">
+    <meta http-equiv="refresh" content="0; url=https://your-portfolio-domain.com">
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            text-align: center; 
+            padding: 50px; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .container { max-width: 600px; margin: 0 auto; }
+        h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+        p { font-size: 1.2rem; margin-bottom: 2rem; }
+        .btn { 
+            display: inline-block; 
+            padding: 12px 24px; 
+            background: #2563eb; 
+            color: white; 
+            text-decoration: none; 
+            border-radius: 8px; 
+            transition: background 0.3s ease;
+        }
+        .btn:hover { background: #1d4ed8; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Pedro Spinosa</h1>
+        <p>ML Engineer @ Nubank | AI Platform | MLOps & Infra</p>
+        <p>Redirecting to portfolio...</p>
+        <a href="https://your-portfolio-domain.com" class="btn">View Portfolio</a>
+    </div>
+</body>
+</html>'''
+        
+        with open(dist_dir / 'index.html', 'w') as f:
+            f.write(index_content)
+        
+        print('Static files built successfully!')
+        "
+        
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      if: github.ref == 'refs/heads/main'
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./dist 
