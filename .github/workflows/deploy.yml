@@ -3,16 +3,12 @@ name: Deploy Portfolio to GitHub Pages
 on:
   push:
     branches: [ main, master ]
-  pull_request:
-    branches: [ main, master ]
 
-# Add permissions for GitHub Pages deployment
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Allow one concurrent deployment
 concurrency:
   group: "pages"
   cancel-in-progress: false
@@ -20,223 +16,37 @@ concurrency:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    
+
     steps:
-    - name: Checkout
+    - name: Checkout code
       uses: actions/checkout@v4
-      
+
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
         python-version: '3.11'
-        
+
     - name: Install uv
       uses: astral-sh/setup-uv@v2
       with:
         version: "latest"
-        
+
     - name: Install dependencies
       run: uv sync
-      
-    - name: Build static site
+
+    - name: Run FastAPI (background)
       run: |
-        # Create dist directory
+        uvicorn src.main:app --host 127.0.0.1 --port 8080 &
+        sleep 5
+
+    - name: Export rendered HTML from FastAPI
+      run: |
         mkdir -p dist
-        
-        # Copy static files
+        curl http://127.0.0.1:8080 -o dist/index.html
         cp -r static dist/
-        
-        # Create a static HTML file with embedded data
-        python -c "
-        # Portfolio data (embedded directly to avoid FastAPI dependency)
-        portfolio_data = {
-            'name': 'Pedro Spinosa',
-            'title': 'ML Engineer @ Nubank | AI Platform | MLOps & Infra',
-            'location': 'Brazil',
-            'summary': 'I am a software engineer with a strong background in AI and Machine Learning, passionate about building reliable, scalable ML Platform infrastructure and DevOps solutions. For almost three years, I\'ve been working on an AI Platform team, building tools and frameworks that boost productivity and scalability for ML and data science teams, contributing to ML operations. I aim to apply my skills in software development, ML, and large‑scale production systems to create impactful solutions.',
-            'email': 'spinosaphb@gmail.com',
-            'linkedin': 'www.linkedin.com/in/pedrospinosa',
-            'github': 'github.com/spinosaphb',
-            'experience': [
-                {
-                    'company': 'Nubank',
-                    'position': 'Machine Learning Engineer',
-                    'period': 'September 2024 - Present (11 months)',
-                    'location': 'São Paulo, São Paulo, Brazil',
-                    'achievements': [
-                        'Built an integration service that enables third-party model deployment within the current infrastructure, supporting the addition of state-of-the-art LLM models and automating the onboarding workflow for external models',
-                        'Provided ongoing support and enhancements to the current ML development tool, adapting it to meet evolving use cases and optimizing the model training and scoring workflows',
-                        'Developed technical reference materials and documentation for AI infrastructure, conducted tool training for development teams, and maintained ongoing feedback loops with users to continuously improve MLOps solutions'
-                    ]
-                },
-                {
-                    'company': 'Nubank',
-                    'position': 'Junior Machine Learning Engineer',
-                    'period': 'January 2024 - August 2024',
-                    'location': 'São Paulo, São Paulo, Brazil',
-                    'achievements': [
-                        'Implemented a lifecycle process for Python versions, enabling reliability of models and libraries, along with updating all AI platform libraries to comply with updated Python range versions',
-                        'Led performance optimization initiatives, achieving significant latency reductions in model inference, enabling multi-parallelism and scoring in batch',
-                        'Enhancing our model development tool to better align with user experience requirements, while also strengthening foundational processes to improve the overall development experience—particularly for new users entering the system'
-                    ]
-                },
-                {
-                    'company': 'Nubank',
-                    'position': 'Machine Learning Engineering Intern',
-                    'period': 'September 2022 - December 2023',
-                    'location': 'São Paulo, São Paulo, Brazil',
-                    'achievements': [
-                        'Developed standardized containerization patterns for ML model deployment, improving resource utilization',
-                        'Built foundational REST API endpoints for model serving, streamlining deployment workflows',
-                        'Contributed to team knowledge sharing, enhancing documentation and best practices in ML infrastructure'
-                    ]
-                },
-                {
-                    'company': 'Insight Data Science Lab',
-                    'position': 'Machine Learning Researcher',
-                    'period': 'May 2021 - August 2022',
-                    'location': 'Fortaleza, Ceará, Brazil',
-                    'achievements': [
-                        'Developed an application that utilizes Named Entity Recognition to identify and highlight entities within a text‑based bulletin. To achieve this, the API utilizes two libraries/frameworks for building base models: SpaCy and Keras',
-                        'Developed an ML operation tool implemented as a class enabling parallel or queued machine learning model training, resulting in a productivity increase of at least 50% by utilizing background threads',
-                        'Created a testable and reliable monitoring class using WebSockets, providing real‑time updates on machine learning model training progress and performance during each epoch for improved ML operations visibility'
-                    ]
-                }
-            ],
-            'education': [
-                {
-                    'institution': 'Federal University of Ceara',
-                    'degree': 'Bachelor\'s degree, Computer Science',
-                    'period': '2019 - 2023',
-                    'location': 'Fortaleza, Ceará, Brazil'
-                }
-            ],
-            'skills': [
-                {'name': 'Deep Learning', 'category': 'AI/ML'},
-                {'name': 'NLP/NER', 'category': 'AI/ML'},
-                {'name': 'Docker', 'category': 'DevOps'},
-                {'name': 'FastAPI', 'category': 'Backend'},
-                {'name': 'Python', 'category': 'Programming'},
-                {'name': 'Machine Learning', 'category': 'AI/ML'},
-                {'name': 'MLOps', 'category': 'DevOps'},
-                {'name': 'AWS', 'category': 'Cloud'},
-                {'name': 'REST APIs', 'category': 'Backend'},
-                {'name': 'Containerization', 'category': 'DevOps'},
-                {'name': 'Performance Optimization', 'category': 'Engineering'},
-                {'name': 'Documentation', 'category': 'Soft Skills'},
-                {'name': 'Team Collaboration', 'category': 'Soft Skills'}
-            ],
-            'certifications': [
-                {'name': 'AWS Academy Machine Learning Foundations', 'issuer': 'AWS'},
-                {'name': 'AWS Academy Cloud Foundations', 'issuer': 'AWS'}
-            ]
-        }
-        
-        # Read the template
-        with open('templates/index.html', 'r') as f:
-            template_content = f.read()
-        
-        # Replace template variables with actual data
-        html_content = template_content.replace('{{ portfolio.name }}', portfolio_data['name'])
-        html_content = html_content.replace('{{ portfolio.title }}', portfolio_data['title'])
-        html_content = html_content.replace('{{ portfolio.location }}', portfolio_data['location'])
-        html_content = html_content.replace('{{ portfolio.summary }}', portfolio_data['summary'])
-        html_content = html_content.replace('{{ portfolio.email }}', portfolio_data['email'])
-        html_content = html_content.replace('{{ portfolio.linkedin }}', portfolio_data['linkedin'])
-        html_content = html_content.replace('{{ portfolio.github }}', portfolio_data['github'])
-        
-        # Replace static file paths
-        html_content = html_content.replace('{{ url_for(\'static\', path=\'/css/style.css\') }}', './static/css/style.css')
-        html_content = html_content.replace('{{ url_for(\'static\', path=\'/js/main.js\') }}', './static/js/main.js')
-        
-        # Replace experience section
-        experience_html = ''
-        for exp in portfolio_data['experience']:
-            experience_html += f'''
-                <div class=\"timeline-item\">
-                    <div class=\"timeline-marker\"></div>
-                    <div class=\"timeline-content\">
-                        <div class=\"timeline-header\">
-                            <h3>{exp['position']}</h3>
-                            <h4>{exp['company']}</h4>
-                            <span class=\"timeline-period\">{exp['period']}</span>
-                            <span class=\"timeline-location\">{exp['location']}</span>
-                        </div>
-                        <ul class=\"timeline-achievements\">
-            '''
-            for achievement in exp['achievements']:
-                experience_html += f'<li>{achievement}</li>'
-            experience_html += '''
-                        </ul>
-                    </div>
-                </div>
-            '''
-        
-        html_content = html_content.replace('{% for exp in portfolio.experience %}\n                <div class=\"timeline-item\">\n                    <div class=\"timeline-marker\"></div>\n                    <div class=\"timeline-content\">\n                        <div class=\"timeline-header\">\n                            <h3>{{ exp.position }}</h3>\n                            <h4>{{ exp.company }}</h4>\n                            <span class=\"timeline-period\">{{ exp.period }}</span>\n                            <span class=\"timeline-location\">{{ exp.location }}</span>\n                        </div>\n                        <ul class=\"timeline-achievements\">\n                            {% for achievement in exp.achievements %}\n                            <li>{{ achievement }}</li>\n                            {% endfor %}\n                        </ul>\n                    </div>\n                </div>\n                {% endfor %}', experience_html)
-        
-        # Replace skills section
-        skills_html = ''
-        categories = list(set(skill['category'] for skill in portfolio_data['skills']))
-        for category in categories:
-            skills_html += f'''
-                <div class=\"skill-category\">
-                    <h3>{category}</h3>
-                    <div class=\"skill-items\">
-            '''
-            for skill in portfolio_data['skills']:
-                if skill['category'] == category:
-                    skills_html += f'<span class=\"skill-tag\">{skill[\"name\"]}</span>'
-            skills_html += '''
-                    </div>
-                </div>
-            '''
-        
-        html_content = html_content.replace('{% set categories = portfolio.skills|map(attribute=\'category\')|unique|list %}\n                {% for category in categories %}\n                <div class=\"skill-category\">\n                    <h3>{{ category }}</h3>\n                    <div class=\"skill-items\">\n                        {% for skill in portfolio.skills %}\n                        {% if skill.category == category %}\n                        <span class=\"skill-tag\">{{ skill.name }}</span>\n                        {% endif %}\n                        {% endfor %}\n                    </div>\n                </div>\n                {% endfor %}', skills_html)
-        
-        # Replace education section
-        education_html = ''
-        for edu in portfolio_data['education']:
-            education_html += f'''
-                <div class=\"education-card\">
-                    <div class=\"education-icon\">
-                        <i class=\"fas fa-graduation-cap\"></i>
-                    </div>
-                    <div class=\"education-content\">
-                        <h3>{edu['degree']}</h3>
-                        <h4>{edu['institution']}</h4>
-                        <p class=\"education-period\">{edu['period']}</p>
-                        <p class=\"education-location\">{edu['location']}</p>
-                    </div>
-                </div>
-            '''
-        
-        html_content = html_content.replace('{% for edu in portfolio.education %}\n                <div class=\"education-card\">\n                    <div class=\"education-icon\">\n                        <i class=\"fas fa-graduation-cap\"></i>\n                    </div>\n                    <div class=\"education-content\">\n                        <h3>{{ edu.degree }}</h3>\n                        <h4>{{ edu.institution }}</h4>\n                        <p class=\"education-period\">{{ edu.period }}</p>\n                        <p class=\"education-location\">{{ edu.location }}</p>\n                    </div>\n                </div>\n                {% endfor %}', education_html)
-        
-        # Replace certifications section
-        certs_html = ''
-        for cert in portfolio_data['certifications']:
-            certs_html += f'''
-                <div class=\"certification-card\">
-                    <div class=\"certification-icon\">\n                        <i class=\"fas fa-certificate\"></i>\n                    </div>\n                    <div class=\"certification-content\">\n                        <h3>{cert['name']}</h3>\n                        <p>{cert['issuer']}</p>\n                    </div>\n                </div>
-            '''
-        
-        html_content = html_content.replace('{% for cert in portfolio.certifications %}\n                <div class=\"certification-card\">\n                    <div class=\"certification-icon\">\n                        <i class=\"fas fa-certificate\"></i>\n                    </div>\n                    <div class=\"certification-content\">\n                        <h3>{{ cert.name }}</h3>\n                        <p>{{ cert.issuer }}</p>\n                    </div>\n                </div>\n                {% endfor %}', certs_html)
-        
-        # Replace stats
-        html_content = html_content.replace('{{ portfolio.experience|length }}', str(len(portfolio_data['experience'])))
-        html_content = html_content.replace('{{ portfolio.skills|length }}', str(len(portfolio_data['skills'])))
-        html_content = html_content.replace('{{ portfolio.certifications|length }}', str(len(portfolio_data['certifications'])))
-        
-        # Write the static HTML file
-        with open('dist/index.html', 'w') as f:
-            f.write(html_content)
-        
-        print('Static site built successfully!')
-        "
-        
+
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
-      if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./dist 
+        publish_dir: ./dist
