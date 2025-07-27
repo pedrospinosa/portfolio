@@ -37,7 +37,7 @@ Visit the portfolio at: [https://spinosaphb.github.io/portfolio/](https://spinos
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/portfolio.git
+   git clone https://github.com/spinosaphb/portfolio.git
    cd portfolio
    ```
 
@@ -125,8 +125,7 @@ portfolio_data = PortfolioData(
     name="Your Name",
     title="Your Title",
     location="Your Location",
-    summary="Your summary...",
-    # ... other fields
+    summary="Your summary..."
 )
 ```
 
@@ -138,7 +137,6 @@ Modify `static/css/style.css` to customize colors, fonts, and layout:
 :root {
     --primary-color: #2563eb;
     --secondary-color: #1f2937;
-    /* Add your custom variables */
 }
 ```
 
