@@ -2,9 +2,9 @@
 
 A modern, responsive portfolio website showcasing my experience as an ML Engineer at Nubank and expertise in AI/ML, MLOps, and infrastructure.
 
-## 🚀 Live Demo
+## 🌐 Live Portfolio Deployment
 
-Visit the portfolio at: [Your GitHub Pages URL]
+Visit the portfolio at: [https://spinosaphb.github.io/portfolio/](https://spinosaphb.github.io/portfolio/)
 
 ## ✨ Features
 
@@ -190,7 +190,7 @@ This project is open source and available under the [MIT License](LICENSE).
 
 - **Email**: spinosaphb@gmail.com
 - **LinkedIn**: [Pedro Spinosa](https://www.linkedin.com/in/pedrospinosa)
-- **Portfolio**: [Your Portfolio URL]
+- **Portfolio**: [https://spinosaphb.github.io/portfolio/](https://spinosaphb.github.io/portfolio/)
 
 ## 🙏 Acknowledgments
 
@@ -198,7 +198,3 @@ This project is open source and available under the [MIT License](LICENSE).
 - uv for modern Python package management
 - Font Awesome for beautiful icons
 - Google Fonts for typography
-
----
-
-Built with ❤️ using FastAPI and uv
