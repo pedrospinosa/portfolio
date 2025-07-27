@@ -53,7 +53,7 @@ jobs:
       run: |
         mkdir -p dist
         curl http://127.0.0.1:8080 -o dist/index.html
-        cp -r static dist/
+        cp -r static dist/static
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
