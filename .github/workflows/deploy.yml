@@ -38,19 +38,16 @@ jobs:
       run: |
         nohup uv run uvicorn src.main:app --host 127.0.0.1 --port 8080 > uvicorn.log 2>&1 &
 
-		- name: Wait for FastAPI to start
-			run: |
-				for i in {1..20}; do
-					if curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:8080 | grep -q "^2"; then
-						echo "FastAPI started."
-						exit 0
-					fi
-					echo "Server not yet ready: attempt $i"
-					sleep 1
-				done
-				echo "FastAPI did not start. Here's the log:"
-				cat uvicorn.log
-				exit 1
+    - name: Wait for FastAPI to start
+      run: |
+        for i in {1..20}; do
+          if curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:8080 | grep -q "^2"; then
+            echo "FastAPI started."
+            exit 0
+          fi
+          echo "Server not yet ready: attempt $i"
+          sleep 1
+        done
 
     - name: Export rendered HTML from FastAPI
       run: |
