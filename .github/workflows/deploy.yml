@@ -37,11 +37,16 @@ jobs:
     - name: Run FastAPI in background
       run: uvicorn src.main:app --host 127.0.0.1 --port 8080 &
 
-    - name: Wait for server to be ready
-      uses: jakejarvis/wait-on-action@master
-      with:
-        resource: http://127.0.0.1:8080
-        timeout: 10000
+    - name: Wait for FastAPI to start
+      run: |
+        for i in {1..20}; do
+          if curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:8080 | grep -q "^2"; then
+            echo "FastAPI started."
+            break
+        	fi
+        	echo "Server not yet ready: attempt $i"
+        	sleep 1
+        done
 
     - name: Export rendered HTML from FastAPI
       run: |
