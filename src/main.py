@@ -60,7 +60,7 @@ class PortfolioData(BaseModel):
     education: List[Education]
     skills: List[Skill]
     certifications: List[Certification]
-    profile_picture_url: str
+    profile: str
 
 # Portfolio data
 portfolio_data = PortfolioData(
@@ -148,7 +148,7 @@ portfolio_data = PortfolioData(
         Certification(name="AWS Academy Machine Learning Foundations", issuer="AWS"),
         Certification(name="AWS Academy Cloud Foundations", issuer="AWS")
     ],
-    profile_picture_url="static/assets/profile.png"
+    profile="avatars.githubusercontent.com/u/58395143"
 )
 
 @app.get("/", response_class=HTMLResponse)
