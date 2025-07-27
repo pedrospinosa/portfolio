@@ -167,6 +167,14 @@ body {
     animation: fadeInRight 1s ease 0.8s both;
 }
 
+.profile-photo {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
 .profile-placeholder {
     width: 300px;
     height: 300px;
