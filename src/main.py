@@ -70,7 +70,7 @@ portfolio_data = PortfolioData(
     summary="I am a software engineer with a strong background in AI and Machine Learning, passionate about building reliable, scalable ML Platform infrastructure and DevOps solutions. For almost three years, I've been working on an AI Platform team, building tools and frameworks that boost productivity and scalability for ML and data science teams, contributing to ML operations. I aim to apply my skills in software development, ML, and large‑scale production systems to create impactful solutions.",
     email="spinosaphb@gmail.com",
     linkedin="www.linkedin.com/in/pedrospinosa",
-    github="github.com/spinosaphb",
+    github="github.com/pedrospinosa",
     experience=[
         Experience(
             company="Nubank",
@@ -142,7 +142,10 @@ portfolio_data = PortfolioData(
         Skill(name="Containerization", category="DevOps"),
         Skill(name="Performance Optimization", category="Engineering"),
         Skill(name="Documentation", category="Soft Skills"),
-        Skill(name="Team Collaboration", category="Soft Skills")
+        Skill(name="Team Collaboration", category="Soft Skills"),
+        Skill(name="Kubernetes", category="DevOps"),
+        Skill(name="Kubeflow", category="AI/ML"),
+        Skill(name="Clojure", category="Programming")
     ],
     certifications=[
         Certification(name="AWS Academy Machine Learning Foundations", issuer="AWS"),
