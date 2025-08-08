@@ -4,7 +4,7 @@ A modern, responsive portfolio website showcasing my experience as an ML Enginee
 
 ## 🌐 Live Portfolio Deployment
 
-Visit the portfolio at: [https://spinosaphb.github.io/portfolio/](https://spinosaphb.github.io/portfolio/)
+Visit the portfolio at: [https://pedrospinosa.dev](https://pedrospinosa.dev)
 
 ## ✨ Features
 
@@ -188,7 +188,7 @@ This project is open source and available under the [MIT License](LICENSE).
 
 - **Email**: spinosaphb@gmail.com
 - **LinkedIn**: [Pedro Spinosa](https://www.linkedin.com/in/pedrospinosa)
-- **Portfolio**: [https://spinosaphb.github.io/portfolio/](https://spinosaphb.github.io/portfolio/)
+- **Portfolio**: [https://pedrospinosa.dev](https://pedrospinosa.dev)
 
 ## 🙏 Acknowledgments
 
