@@ -99,7 +99,7 @@ def load_profile_data(profile_path: Optional[str] = None) -> PortfolioData:
         return portfolio_data
     except ValidationError as e:
         logger.error(f"Validation error in profile data: {e}")
-        raise ValidationError(f"Invalid profile data structure: {e}")
+        raise e
 
 def get_portfolio_data() -> PortfolioData:
     """

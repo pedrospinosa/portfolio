@@ -13,13 +13,22 @@ dependencies = [
     "pyyaml>=6.0.1",
     "pydantic>=2.0.0",
 ]
+
 requires-python = ">=3.11"
 readme = "README.md"
+
+[project.optional-dependencies]
+test = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+    "httpx>=0.24.0",
+]
 
 [project.scripts]
 portfolio = "src.main:app"
 start = "src.main:main"
 dev = "src.main:dev"
+test = "pytest:main"
 
 [build-system]
 requires = ["hatchling"]
@@ -30,3 +39,18 @@ packages = ["src"]
 
 [tool.uv]
 dev-dependencies = []
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+    "--strict-markers",
+    "--strict-config",
+    "--verbose",
+]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "integration: marks tests as integration tests",
+]

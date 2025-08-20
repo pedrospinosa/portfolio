@@ -1,13 +1,10 @@
-# Pedro Spinosa - Portfolio
+# Portfolio - A Forkable Portfolio Website
 
-A modern, responsive portfolio website showcasing my experience as an ML Engineer at Nubank and expertise in AI/ML, MLOps, and infrastructure.
-
-## 🌐 Live Portfolio Deployment
-
-Visit the portfolio at: [https://pedrospinosa.dev](https://pedrospinosa.dev)
+A modern, responsive portfolio website built with FastAPI and Jinja2. **Easily forkable** - just update the `portfolio.yml` file to customize your own portfolio!
 
 ## ✨ Features
 
+- **Easy Customization**: All data stored in `portfolio.yml` - no Python code changes needed
 - **Modern Design**: Clean, professional interface with smooth animations
 - **Responsive Layout**: Perfect on desktop, tablet, and mobile devices
 - **FastAPI Backend**: Modern Python web framework with API endpoints
@@ -20,11 +17,11 @@ Visit the portfolio at: [https://pedrospinosa.dev](https://pedrospinosa.dev)
 
 - **Backend**: FastAPI, Python 3.11+
 - **Package Manager**: uv (modern Python package manager)
+- **Data**: YAML configuration with Pydantic validation
 - **Frontend**: HTML5, CSS3, Vanilla JavaScript
 - **Styling**: Custom CSS with modern design principles
 - **Icons**: Font Awesome
 - **Fonts**: Inter (Google Fonts)
-- **Deployment**: GitHub Pages, Docker support
 
 ## 📋 Quick Start
 
@@ -48,11 +45,11 @@ Visit the portfolio at: [https://pedrospinosa.dev](https://pedrospinosa.dev)
 
 3. **Run the development server**
    ```bash
-   uv run uvicorn src.main:app --reload --host 127.0.0.1 --port 8080
+   uv run dev
    ```
 
 4. **Open your browser**
-   Navigate to `http://127.0.0.1:8080`
+   Navigate to `http://localhost:8000`
 
 ## 🏗️ Project Structure
 
@@ -60,7 +57,8 @@ Visit the portfolio at: [https://pedrospinosa.dev](https://pedrospinosa.dev)
 portfolio/
 ├── src/
 │   ├── __init__.py
-│   └── main.py            # FastAPI application
+│   ├── main.py            # FastAPI application
+│   └── data.py            # YAML data loading and validation
 ├── templates/
 │   └── index.html         # Main HTML template
 ├── static/
@@ -69,9 +67,8 @@ portfolio/
 │   ├── js/
 │   │   └── main.js        # JavaScript functionality
 │   └── images/            # Static images
+├── portfolio.yml          # Your portfolio data (edit this!)
 ├── pyproject.toml         # Project configuration
-├── Dockerfile             # Docker configuration
-├── docker-compose.yml     # Docker Compose setup
 └── README.md              # This file
 ```
 
@@ -84,49 +81,69 @@ portfolio/
 - `GET /api/education` - Education information
 - `GET /api/certifications` - Certifications
 
-## 🐳 Docker Deployment
+## 🚀 Quick Customization
 
-### Using Docker Compose (Recommended)
+### 1. Update Your Information
 
-```bash
-docker-compose up -d
+Edit `portfolio.yml` with your details:
+
+```yaml
+personal:
+  name: "Your Name"
+  title: "Your Title"
+  location: "Your Location"
+  summary: "Your professional summary..."
+  email: "your.email@example.com"
+  linkedin: "www.linkedin.com/in/yourprofile"
+  github: "github.com/yourusername"
+  profile: "avatars.githubusercontent.com/u/yourid"
 ```
 
-### Using Docker directly
+### 2. Add Your Experience
 
-```bash
-docker build -t portfolio .
-docker run -p 8000:8000 portfolio
+```yaml
+experience:
+  - company: "Your Company"
+    position: "Your Position"
+    duration: "Duration"
+    location: "Location"
+    period: "Period"
+    achievements:
+      - "Your achievement 1"
+      - "Your achievement 2"
 ```
+
+### 3. Update Skills & Education
+
+Add your skills, education, and certifications in the respective sections.
 
 ## 📦 Deployment Options
 
-### GitHub Pages (Static)
+### Local Development
 
-1. Push your code to GitHub
-2. Enable GitHub Pages in repository settings
-3. Set source to main branch
-4. The GitHub Actions workflow will automatically deploy
+```bash
+uv run dev  # Development with auto-reload
+uv run start  # Production mode
+```
 
 ### Production Deployment
 
 - **Cloud Platforms**: Deploy to AWS, Google Cloud, or Azure
 - **VPS**: Deploy to a virtual private server
-- **Container Orchestration**: Use Kubernetes or Docker Swarm
+- **Platform Services**: Render, Railway, Heroku, etc.
 
 ## 🎨 Customization
 
 ### Updating Portfolio Data
 
-Edit the `portfolio_data` object in `src/main.py`:
+**No Python code changes needed!** Simply edit `portfolio.yml`:
 
-```python
-portfolio_data = PortfolioData(
-    name="Your Name",
-    title="Your Title",
-    location="Your Location",
-    summary="Your summary..."
-)
+```yaml
+personal:
+  name: "Your Name"
+  title: "Your Title"
+  location: "Your Location"
+  summary: "Your summary..."
 ```
 
 ### Styling
@@ -140,6 +157,26 @@ Modify `static/css/style.css` to customize colors, fonts, and layout:
 }
 ```
 
+## 🧪 Testing
+
+The project includes comprehensive unit tests to ensure reliability:
+
+### Running Tests
+
+```bash
+# Run all tests
+uv run test
+
+# Run tests with verbose output
+python -m pytest tests/ -v
+
+# Run specific test file
+python -m pytest tests/test_data.py -v
+
+# Run tests with coverage
+python -m pytest tests/ --cov=src --cov-report=html
+```
+
 ## 🔧 Development
 
 ### Adding New Features
@@ -147,15 +184,22 @@ Modify `static/css/style.css` to customize colors, fonts, and layout:
 1. **Backend**: Add new endpoints in `src/main.py`
 2. **Frontend**: Update templates and static files
 3. **Styling**: Modify CSS for new components
+4. **Tests**: Add corresponding unit tests in `tests/`
 
 ### Testing
 
 ```bash
 # Run the application
-uv run uvicorn src.main:app --reload
+uv run dev
 
 # Test API endpoints
-curl http://localhost:8080/api/portfolio
+curl http://localhost:8000/api/portfolio
+
+# Run unit tests
+uv run test
+
+# Or run tests directly
+python -m pytest tests/ -v
 ```
 
 ## 📱 Mobile Responsiveness
@@ -188,7 +232,7 @@ This project is open source and available under the [MIT License](LICENSE).
 
 - **Email**: spinosaphb@gmail.com
 - **LinkedIn**: [Pedro Spinosa](https://www.linkedin.com/in/pedrospinosa)
-- **Portfolio**: [https://pedrospinosa.dev](https://pedrospinosa.dev)
+- **GitHub**: [pedrospinosa](https://github.com/pedrospinosa)
 
 ## 🙏 Acknowledgments
 
