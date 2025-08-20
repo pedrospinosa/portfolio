@@ -1,7 +1,7 @@
 [project]
-name = "portfolio-backend"
+name = "portfolio"
 version = "0.1.0"
-description = "Pedro Spinosa's Portfolio Backend"
+description = "A modern, forkable portfolio website built with FastAPI and Jinja2"
 authors = [
     {name = "Pedro Spinosa", email = "spinosaphb@gmail.com"},
 ]
@@ -10,12 +10,16 @@ dependencies = [
     "uvicorn>=0.35.0",
     "jinja2>=3.1.6",
     "python-multipart>=0.0.20",
+    "pyyaml>=6.0.1",
+    "pydantic>=2.0.0",
 ]
 requires-python = ">=3.11"
 readme = "README.md"
 
 [project.scripts]
 portfolio = "src.main:app"
+start = "src.main:main"
+dev = "src.main:dev"
 
 [build-system]
 requires = ["hatchling"]

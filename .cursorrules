@@ -1,0 +1,35 @@
+
+## AI Behavior
+
+* **Proactively suggest improvements** when appropriate (API design, perf, ergonomics).
+* **Always explain the reasoning** behind recommendations; link to trade-offs.
+* **Provide context** for any code changes (what/why/risk/alternatives).
+* **Ask clarifying questions** when requirements are ambiguous.
+* Prefer **MUST/SHOULD/MAY** language; call out **breaking changes** explicitly.
+* Prefer **small, iterative diffs** over large refactors unless asked.
+* When unsure, **favor correctness, reproducibility, and maintainability** over cleverness.
+
+---
+
+## Git
+
+* **Commit only relevant changes** (avoid bundling unrelated edits).
+* **Conventional Commits** required:
+
+  * `feat:`, `fix:`, `docs:`, `refactor:`, `perf:`, `test:`, `build:`, `ci:`, `chore:`, `revert:`
+  * Use `feat!: ...` for breaking changes and include a `BREAKING CHANGE:` footer.
+* Keep messages **concise, descriptive, meaningful**. Include context in body.
+* **Branch naming**: `type/short-scope` (e.g., `feat/argo-retries`, `fix/runner-uv-sync`).
+* **One logical change per PR**; squash merge with the PR title as the final commit message.
+
+**Template**
+
+```
+<type>(<scope>): <summary>
+
+<body – why, how, trade-offs, links>
+
+BREAKING CHANGE: <impact and migration>
+```
+
+---

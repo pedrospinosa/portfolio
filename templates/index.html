@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ portfolio.name }} - Portfolio</title>
-    <meta name="description" content="{{ portfolio.summary[:160] }}">
+    <title>{{ portfolio.personal.name }} - Portfolio</title>
+    <meta name="description" content="{{ portfolio.personal.summary[:160] }}">
     <link rel="stylesheet" href="./static/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="icon" href="https://{{ portfolio.profile }}">
+    <link rel="icon" href="https://{{ portfolio.personal.profile }}">
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <a href="#home">{{ portfolio.name }}</a>
+                <a href="#home">{{ portfolio.personal.name }}</a>
             </div>
             <ul class="nav-menu">
                 <li><a href="#home" class="nav-link">Home</a></li>
@@ -36,9 +36,9 @@
     <section id="home" class="hero">
         <div class="hero-container">
             <div class="hero-content">
-                <h1 class="hero-title">{{ portfolio.name }}</h1>
-                <h2 class="hero-subtitle">{{ portfolio.title }}</h2>
-                <p class="hero-location"><i class="fas fa-map-marker-alt"></i> {{ portfolio.location }}</p>
+                <h1 class="hero-title">{{ portfolio.personal.name }}</h1>
+                <h2 class="hero-subtitle">{{ portfolio.personal.title }}</h2>
+                <p class="hero-location"><i class="fas fa-map-marker-alt"></i> {{ portfolio.personal.location }}</p>
                 <div class="hero-buttons">
                     <a href="#contact" class="btn btn-primary">Get in Touch</a>
                     <a href="#experience" class="btn btn-secondary">View Experience</a>
@@ -47,7 +47,7 @@
             <div class="hero-image">
                 <div class="profile-placeholder">
                     <!-- <i class="fas fa-user-circle"></i> -->
-                    <img src="https://{{ portfolio.profile }}" alt="{{ portfolio.name }}" class="profile-photo" />
+                    <img src="https://{{ portfolio.personal.profile }}" alt="{{ portfolio.personal.name }}" class="profile-photo" />
                 </div>
             </div>
         </div>
@@ -59,7 +59,7 @@
             <h2 class="section-title">About Me</h2>
             <div class="about-content">
                 <div class="about-text">
-                    <p>{{ portfolio.summary }}</p>
+                    <p>{{ portfolio.personal.summary }}</p>
                 </div>
                 <div class="about-stats">
                     <div class="stat">
@@ -180,21 +180,21 @@
                         <i class="fas fa-envelope"></i>
                         <div>
                             <h3>Email</h3>
-                            <a href="mailto:{{ portfolio.email }}">{{ portfolio.email }}</a>
+                            <a href="mailto:{{ portfolio.personal.email }}">{{ portfolio.personal.email }}</a>
                         </div>
                     </div>
                     <div class="contact-item">
                         <i class="fab fa-linkedin"></i>
                         <div>
                             <h3>LinkedIn</h3>
-                            <a href="https://{{ portfolio.linkedin }}" target="_blank">{{ portfolio.linkedin }}</a>
+                            <a href="https://{{ portfolio.personal.linkedin }}" target="_blank">{{ portfolio.personal.linkedin }}</a>
                         </div>
                     </div>
                     <div class="contact-item">
                         <i class="fab fa-github"></i>
                         <div>
                             <h3>GitHub</h3>
-                            <a href="https://{{ portfolio.github }}" target="_blank">{{ portfolio.github }}</a>
+                            <a href="https://{{ portfolio.personal.github }}" target="_blank">{{ portfolio.personal.github }}</a>
                         </div>
                     </div>
                 </div>
@@ -219,7 +219,7 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 {{ portfolio.name }}. All rights reserved.</p>
+            <p>&copy; 2025 {{ portfolio.personal.name }}. All rights reserved.</p>
         </div>
     </footer>
 
