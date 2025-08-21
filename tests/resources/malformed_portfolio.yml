@@ -1,0 +1,18 @@
+# Malformed Test Portfolio Configuration
+# This file has invalid YAML syntax for testing error handling
+
+personal:
+  name: "John Doe"
+  title: "Software Engineer"
+  # Invalid YAML syntax - missing closing quote
+  location: "San Francisco, CA
+  summary: "Test summary"
+  email: "john@example.com"
+  linkedin: "linkedin.com/in/johndoe"
+  github: "github.com/johndoe"
+  profile: "avatars.githubusercontent.com/u/123"
+
+experience: []
+education: []
+skills: []
+certifications: []

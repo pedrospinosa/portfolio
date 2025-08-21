@@ -1,0 +1,17 @@
+# Cache Test Portfolio Configuration
+# Simple test data for caching tests
+
+personal:
+  name: "Cache Test User"
+  title: "Test Engineer"
+  location: "Test City"
+  summary: "Test summary for caching"
+  email: "cache@test.com"
+  linkedin: "linkedin.com/in/cachetest"
+  github: "github.com/cachetest"
+  profile: "avatars.githubusercontent.com/u/cache123"
+
+experience: []
+education: []
+skills: []
+certifications: []

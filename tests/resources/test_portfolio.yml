@@ -1,0 +1,63 @@
+# Test Portfolio Configuration
+# This file contains test data for portfolio unit tests
+
+# Personal Information
+personal:
+  name: "John Doe"
+  title: "Software Engineer"
+  location: "San Francisco, CA"
+  summary: "Experienced software engineer with a passion for building scalable applications"
+  email: "john.doe@example.com"
+  linkedin: "linkedin.com/in/johndoe"
+  github: "github.com/johndoe"
+  profile: "avatars.githubusercontent.com/u/123456"
+
+# Professional Experience
+experience:
+  - company: "Tech Corp"
+    position: "Senior Software Engineer"
+    duration: "2 years"
+    location: "San Francisco, CA"
+    period: "2022-2024"
+    achievements:
+      - "Built scalable microservices architecture"
+      - "Led team of 5 developers"
+      - "Reduced system latency by 40%"
+
+  - company: "StartupXYZ"
+    position: "Full Stack Developer"
+    duration: "1.5 years"
+    location: "Remote"
+    period: "2020-2022"
+    achievements:
+      - "Developed MVP from scratch"
+      - "Implemented CI/CD pipeline"
+
+# Education
+education:
+  - institution: "University of Tech"
+    degree: "Bachelor's degree, Computer Science"
+    period: "2016-2020"
+    location: "San Francisco, CA"
+
+# Skills (organized by category)
+skills:
+  - name: "Python"
+    category: "Programming"
+  - name: "JavaScript"
+    category: "Programming"
+  - name: "React"
+    category: "Frontend"
+  - name: "FastAPI"
+    category: "Backend"
+  - name: "Docker"
+    category: "DevOps"
+  - name: "AWS"
+    category: "Cloud"
+
+# Certifications
+certifications:
+  - name: "AWS Certified Solutions Architect"
+    issuer: "Amazon Web Services"
+  - name: "Certified Kubernetes Administrator"
+    issuer: "Cloud Native Computing Foundation"

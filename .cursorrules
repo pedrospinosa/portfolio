@@ -8,6 +8,7 @@
 * Prefer **MUST/SHOULD/MAY** language; call out **breaking changes** explicitly.
 * Prefer **small, iterative diffs** over large refactors unless asked.
 * When unsure, **favor correctness, reproducibility, and maintainability** over cleverness.
+* Dont make unnecessary comments or doc-strings
 
 ---
 

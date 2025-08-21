@@ -1,0 +1,11 @@
+# Invalid Test Portfolio Configuration
+# This file has missing required fields for testing validation
+
+personal:
+  name: "John Doe"
+  # Missing required fields: title, location, summary, email, linkedin, github, profile
+  
+experience: []
+education: []
+skills: []
+certifications: []
