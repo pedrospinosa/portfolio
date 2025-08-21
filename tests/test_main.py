@@ -106,12 +106,12 @@ class TestApplicationConfiguration:
         middleware_found = False
 
         for middleware in app.user_middleware:
-            if middleware.cls == CORSMiddleware:
+            if isinstance(middleware.cls, type) and issubclass(middleware.cls, CORSMiddleware):
                 middleware_found = True
                 break
 
         assert middleware_found, "CORS middleware not found in application"
 
     def test_static_files_mounted(self):
-        routes = [route.path for route in app.routes]
+        routes = [route.path for route in app.routes if hasattr(route, "path")]
         assert "/static" in routes

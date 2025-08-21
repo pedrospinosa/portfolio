@@ -38,7 +38,7 @@ class TestPortfolioDataModels:
             "achievements": ["Built scalable system", "Led team of 5"],
         }
 
-        experience = Experience(**valid_data)
+        experience = Experience(**valid_data)  # type: ignore
         assert experience.company == "Tech Corp"
         assert len(experience.achievements) == 2
 
@@ -83,7 +83,7 @@ class TestPortfolioDataModels:
             "certifications": [{"name": "AWS Certified", "issuer": "Amazon"}],
         }
 
-        portfolio = PortfolioData(**valid_data)
+        portfolio = PortfolioData(**valid_data)  # type: ignore
         assert portfolio.personal.name == "John Doe"
         assert len(portfolio.experience) == 1
         assert len(portfolio.education) == 1

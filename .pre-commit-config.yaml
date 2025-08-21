@@ -21,5 +21,13 @@ repos:
     rev: v1.10.0
     hooks:
       - id: mypy
-        additional_dependencies: [types-pyyaml]
-        args: [--ignore-missing-imports]
+        additional_dependencies: [
+          types-pyyaml,
+          fastapi,
+          pydantic,
+          uvicorn,
+          jinja2,
+          pytest,
+          httpx,
+        ]
+        args: [--strict]
