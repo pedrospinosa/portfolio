@@ -31,6 +31,10 @@ A modern, responsive portfolio website built with FastAPI and Jinja2. **Easily f
 
 You can see how the portfolio will look like here: **[https://pedrospinosa.dev/](https://pedrospinosa.dev/)**
 
+<img src="assets/example.gif" alt="Portfolio Demo" width="600" style="max-width: 100%; height: auto;">
+
+*More details in the portfolio*
+
 ### Prerequisites
 
 - Python 3.11 or higher

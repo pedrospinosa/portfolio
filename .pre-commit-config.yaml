@@ -7,6 +7,7 @@ repos:
       - id: check-yaml
         exclude: tests/resources/malformed_portfolio.yml
       - id: check-added-large-files
+        exclude: assets/example.gif
       - id: check-merge-conflict
       - id: debug-statements
 
