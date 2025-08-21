@@ -1,11 +1,12 @@
 name: Deploy Portfolio to GitHub Pages
 
 on:
+  push:
+    branches: [ main, master ]
   workflow_run:
     workflows: ["Pull Request Checks"]
     types:
       - completed
-    branches: [ main, master ]
   workflow_dispatch:
 
 permissions:
