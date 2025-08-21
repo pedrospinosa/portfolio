@@ -31,6 +31,7 @@ dev = [
     "types-requests>=2.31.0",
     "types-urllib3>=1.26.0",
     "types-setuptools>=69.0.0",
+    "bandit>=1.7.0",
 ]
 
 [project.scripts]
@@ -109,3 +110,7 @@ disallow_untyped_defs = false
 [[tool.mypy.overrides]]
 module = "run_tests"
 disallow_untyped_defs = false
+
+[tool.bandit]
+exclude_dirs = ["tests", ".venv", ".git"]
+skips = ["B101", "B601", "B104"]

@@ -1,8 +1,12 @@
 name: Deploy Portfolio to GitHub Pages
 
 on:
-  push:
+  workflow_run:
+    workflows: ["Pull Request Checks"]
+    types:
+      - completed
     branches: [ main, master ]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -14,8 +18,16 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  check-pr-workflow:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - name: Check PR workflow status
+        run: echo "✅ PR workflow completed successfully"
+
   build-and-deploy:
     runs-on: ubuntu-latest
+    needs: check-pr-workflow
 
     steps:
     - name: Checkout code

@@ -178,6 +178,39 @@ python -m pytest tests/test_data.py -v
 python -m pytest tests/ --cov=src --cov-report=html
 ```
 
+## 🚀 CI/CD Pipeline
+
+The project uses GitHub Actions for automated quality checks and deployment:
+
+### Workflow Structure
+
+- **PR Checks** (`.github/workflows/pr.yml`): Runs on every PR and push to main
+  - Code quality checks (ruff, mypy, pre-commit)
+  - Security checks (bandit)
+  - Unit tests
+  - API endpoint testing
+
+- **Deploy** (`.github/workflows/deploy.yml`): Runs after PR checks pass
+  - Deploys to GitHub Pages
+  - Only triggers on successful PR workflow completion
+
+### Quality Gates
+
+All code must pass:
+- ✅ **Linting**: ruff code style checks
+- ✅ **Type Checking**: mypy strict type validation
+- ✅ **Tests**: All unit tests passing
+- ✅ **Security**: bandit security analysis
+- ✅ **Pre-commit**: All hooks passing
+
+### Deployment
+
+Deployment is fully automated:
+1. Code is pushed to main branch
+2. PR workflow runs all quality checks
+3. If all checks pass, deploy workflow triggers
+4. Application is deployed to GitHub Pages
+
 ## 🔧 Development
 
 ### Code Quality Tools
