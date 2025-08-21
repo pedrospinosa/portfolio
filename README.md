@@ -4,11 +4,9 @@ A modern, responsive portfolio website built with FastAPI and Jinja2. **Easily f
 
 ## 📋 Table of Contents
 
-- [✨ Features](#-features)
-- [🛠️ Tech Stack](#️-tech-stack)
 - [📋 Quick Start](#-quick-start)
-- [🏗️ Project Structure](#️-project-structure)
 - [🚀 Quick Customization](#-quick-customization)
+- [🏗️ Project Structure](#️-project-structure)
 - [🚀 Running the Application](#-running-the-application)
 - [🧪 Testing](#-testing)
 - [🚀 Deployment](#-deployment)
@@ -18,29 +16,20 @@ A modern, responsive portfolio website built with FastAPI and Jinja2. **Easily f
 - [📞 Contact](#-contact)
 - [🙏 Acknowledgments](#-acknowledgments)
 
-## ✨ Features
+## 🚀 Quick Start
 
-- **Easy Customization**: All data stored in `portfolio.yml` - no Python code changes needed
-- **Modern Design**: Clean, professional interface with smooth animations
-- **Responsive Layout**: Perfect on desktop, tablet, and mobile devices
-- **FastAPI Backend**: Modern Python web framework with API endpoints
-- **Interactive Timeline**: Visual representation of work experience
-- **Skills Organization**: Categorized skills and expertise
-- **Contact Form**: Easy way for visitors to get in touch
-- **SEO Optimized**: Ready for search engines
+### 🍴 Fork & Setup
 
-## 🛠️ Tech Stack
+1. **Fork this repository** on GitHub
+2. **Clone your fork**:
+   ```bash
+   git clone https://github.com/YOUR_USERNAME/portfolio.git
+   cd portfolio
+   ```
 
-- **Backend**: FastAPI, Python 3.11+
-- **Package Manager**: uv (modern Python package manager)
-- **Data**: YAML configuration with Pydantic validation
-- **Code Quality**: ruff (linting & formatting), mypy (type checking), pre-commit (hooks)
-- **Frontend**: HTML5, CSS3, Vanilla JavaScript
-- **Styling**: Custom CSS with modern design principles
-- **Icons**: Font Awesome
-- **Fonts**: Inter (Google Fonts)
+### 👀 See It In Action
 
-## 📋 Quick Start
+You can see how the portfolio will look like here: **[https://pedrospinosa.dev/](https://pedrospinosa.dev/)**
 
 ### Prerequisites
 
@@ -49,24 +38,34 @@ A modern, responsive portfolio website built with FastAPI and Jinja2. **Easily f
 
 ### Installation
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/spinosaphb/portfolio.git
-   cd portfolio
-   ```
-
-2. **Install dependencies**
+1. **Install dependencies**
    ```bash
    uv sync
    ```
 
-3. **Run the development server**
+2. **Run the development server**
    ```bash
    uv run dev
    ```
 
-4. **Open your browser**
+3. **Open your browser**
    Navigate to `http://localhost:8000`
+
+## 🚀 Quick Customization
+
+Edit `portfolio.yml` with your details. See [docs/CONFIGURATION.md](docs/CONFIGURATION.md) for complete setup instructions:
+
+```yaml
+personal:
+  name: "Your Name"
+  title: "Your Title"
+  location: "Your Location"
+  summary: "Your professional summary..."
+  email: "your.email@example.com"
+  linkedin: "linkedin.com/in/yourprofile"
+  github: "github.com/yourusername"
+  profile: "avatars.githubusercontent.com/u/yourid"
+```
 
 ## 🏗️ Project Structure
 
@@ -87,25 +86,6 @@ portfolio/
 ├── portfolio.yml          # Your portfolio data (edit this!)
 ├── pyproject.toml         # Project configuration
 └── README.md              # This file
-```
-
-## 🚀 Quick Customization
-
-### 1. Update Your Information
-
-Edit `portfolio.yml` with your details. See [docs/CONFIGURATION.md](docs/CONFIGURATION.md) for complete setup instructions:
-
-```yaml
-personal:
-  name: "Your Name"
-  title: "Your Title"
-  location: "Your Location"
-  summary: "Your professional summary..."
-  email: "your.email@example.com"
-  linkedin: "www.linkedin.com/in/yourprofile"
-  github: "github.com/yourusername"
-  profile: "avatars.githubusercontent.com/u/yourid"
-  ...
 ```
 
 ## 🚀 Running the Application
@@ -228,7 +208,6 @@ The project enforces high code quality standards:
 ## 📄 License
 
 This project is open source and available under the [MIT License](LICENSE).
-
 ## 📞 Contact
 
 - **Email**: spinosaphb@gmail.com
