@@ -109,3 +109,12 @@ certifications:
     issuer: "AWS"
   - name: "AWS Academy Cloud Foundations"
     issuer: "AWS"
+
+# Projects
+projects:
+  - name: "AXL Workflows"
+    description: "Lightweight framework for building data and ML workflows with class-based Python syntax. Compiles workflows into Dagster jobs for local development and Argo Workflows YAML for Kubeflow Pipelines in Kubernetes."
+    technologies: ["Python", "Dagster", "Argo Workflows", "Kubernetes", "ML", "Data Engineering"]
+    github: "github.com/pedrospinosa/axl-workflows"
+    pypi: "pypi.org/project/axl-workflows/"
+    image: "/assets/axl.png"

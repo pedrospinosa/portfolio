@@ -21,6 +21,7 @@ class TestPortfolioEndpoints:
         assert "education" in data
         assert "skills" in data
         assert "certifications" in data
+        assert "projects" in data
 
     def test_get_experience_success(self, client):
         response = client.get("/api/experience")
@@ -62,6 +63,17 @@ class TestPortfolioEndpoints:
             assert "name" in data[0]
             assert "issuer" in data[0]
 
+    def test_get_projects_success(self, client):
+        response = client.get("/api/projects")
+
+        assert response.status_code == 200
+        data = response.json()
+        assert isinstance(data, list)
+        if len(data) > 0:
+            assert "name" in data[0]
+            assert "description" in data[0]
+            assert "technologies" in data[0]
+
 
 class TestMainPage:
     @pytest.fixture
@@ -75,6 +87,7 @@ class TestMainPage:
         assert "text/html" in response.headers["content-type"]
         assert "Portfolio" in response.text
         assert "Experience" in response.text
+        assert "Projects" in response.text
         assert "Skills" in response.text
 
 

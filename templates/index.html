@@ -21,6 +21,7 @@
                 <li><a href="#home" class="nav-link">Home</a></li>
                 <li><a href="#about" class="nav-link">About</a></li>
                 <li><a href="#experience" class="nav-link">Experience</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
                 <li><a href="#skills" class="nav-link">Skills</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
@@ -120,6 +121,50 @@
                         {% if skill.category == category %}
                         <span class="skill-tag">{{ skill.name }}</span>
                         {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">Projects</h2>
+            <div class="projects-grid">
+                {% for project in portfolio.projects %}
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            {% if project.image %}
+                            <img src="{{ project.image }}" alt="{{ project.name }}" onerror="console.log('Image failed to load:', this.src); this.style.display='none'; this.nextElementSibling.style.display='flex';" onload="console.log('Image loaded successfully:', this.src);" />
+                            <i class="fab fa-github" style="display: none;"></i>
+                            {% else %}
+                            <i class="fab fa-github"></i>
+                            {% endif %}
+                        </div>
+                        <div class="project-info">
+                            <h3>{{ project.name }}</h3>
+                            <div class="project-links">
+                                {% if project.github %}
+                                <a href="https://{{ project.github }}" target="_blank" class="project-link-icon" title="GitHub">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                {% endif %}
+                                {% if project.pypi %}
+                                <a href="https://{{ project.pypi }}" target="_blank" class="project-link-icon" title="PyPI">
+                                    <img src="https://pypi.org/static/images/logo-small.8998e9d1.svg" alt="PyPI" class="pypi-icon">
+                                </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <p class="project-description">{{ project.description }}</p>
+                    <div class="project-technologies">
+                        {% for tech in project.technologies %}
+                        <span class="tech-tag">{{ tech }}</span>
                         {% endfor %}
                     </div>
                 </div>
