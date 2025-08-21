@@ -70,5 +70,7 @@ jobs:
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
+        # Requires GENERAL_GITHUB_PAGES_TOKEN secret to be configured
+        # See docs/DEPLOYMENT.md for setup instructions
         github_token: ${{ secrets.GENERAL_GITHUB_PAGES_TOKEN }}
         publish_dir: ./dist

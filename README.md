@@ -2,6 +2,22 @@
 
 A modern, responsive portfolio website built with FastAPI and Jinja2. **Easily forkable** - just update the `portfolio.yml` file to customize your own portfolio!
 
+## 📋 Table of Contents
+
+- [✨ Features](#-features)
+- [🛠️ Tech Stack](#️-tech-stack)
+- [📋 Quick Start](#-quick-start)
+- [🏗️ Project Structure](#️-project-structure)
+- [🚀 Quick Customization](#-quick-customization)
+- [🚀 Running the Application](#-running-the-application)
+- [🧪 Testing](#-testing)
+- [🚀 Deployment](#-deployment)
+- [🔧 Development](#-development)
+- [🤝 Contributing](#-contributing)
+- [📄 License](#-license)
+- [📞 Contact](#-contact)
+- [🙏 Acknowledgments](#-acknowledgments)
+
 ## ✨ Features
 
 - **Easy Customization**: All data stored in `portfolio.yml` - no Python code changes needed
@@ -73,20 +89,11 @@ portfolio/
 └── README.md              # This file
 ```
 
-## 🌐 API Endpoints
-
-- `GET /` - Main portfolio page
-- `GET /api/portfolio` - Complete portfolio data (JSON)
-- `GET /api/experience` - Work experience data
-- `GET /api/skills` - Skills and expertise
-- `GET /api/education` - Education information
-- `GET /api/certifications` - Certifications
-
 ## 🚀 Quick Customization
 
 ### 1. Update Your Information
 
-Edit `portfolio.yml` with your details:
+Edit `portfolio.yml` with your details. See [docs/CONFIGURATION.md](docs/CONFIGURATION.md) for complete setup instructions:
 
 ```yaml
 personal:
@@ -98,71 +105,17 @@ personal:
   linkedin: "www.linkedin.com/in/yourprofile"
   github: "github.com/yourusername"
   profile: "avatars.githubusercontent.com/u/yourid"
+  ...
 ```
 
-### 2. Add Your Experience
-
-```yaml
-experience:
-  - company: "Your Company"
-    position: "Your Position"
-    duration: "Duration"
-    location: "Location"
-    period: "Period"
-    achievements:
-      - "Your achievement 1"
-      - "Your achievement 2"
-```
-
-### 3. Update Skills & Education
-
-Add your skills, education, and certifications in the respective sections.
-
-## 📦 Deployment Options
-
-### Local Development
+## 🚀 Running the Application
 
 ```bash
 uv run dev  # Development with auto-reload
 uv run start  # Production mode
 ```
 
-### Production Deployment
-
-- **Cloud Platforms**: Deploy to AWS, Google Cloud, or Azure
-- **VPS**: Deploy to a virtual private server
-- **Platform Services**: Render, Railway, Heroku, etc.
-
-## 🎨 Customization
-
-### Updating Portfolio Data
-
-**No Python code changes needed!** Simply edit `portfolio.yml`:
-
-```yaml
-personal:
-  name: "Your Name"
-  title: "Your Title"
-  location: "Your Location"
-  summary: "Your summary..."
-```
-
-### Styling
-
-Modify `static/css/style.css` to customize colors, fonts, and layout:
-
-```css
-:root {
-    --primary-color: #2563eb;
-    --secondary-color: #1f2937;
-}
-```
-
 ## 🧪 Testing
-
-The project includes comprehensive unit tests to ensure reliability:
-
-### Running Tests
 
 ```bash
 # Run all tests
@@ -178,7 +131,7 @@ python -m pytest tests/test_data.py -v
 python -m pytest tests/ --cov=src --cov-report=html
 ```
 
-## 🚀 CI/CD Pipeline
+## 🚀 Deployment
 
 The project uses GitHub Actions for automated quality checks and deployment:
 
@@ -211,6 +164,10 @@ Deployment is fully automated:
 3. If all checks pass, deploy workflow triggers
 4. Application is deployed to GitHub Pages
 
+**Note**: See [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) for detailed setup instructions, including required GitHub secrets configuration.
+
+📚 **See [docs/README.md](docs/README.md) for details on how to configure and deploy your portfolio.**
+
 ## 🔧 Development
 
 ### Code Quality Tools
@@ -235,13 +192,6 @@ uv run pre-commit run --all-files
 uv run pre-commit install
 ```
 
-### Adding New Features
-
-1. **Backend**: Add new endpoints in `src/views.py`
-2. **Frontend**: Update templates and static files
-3. **Styling**: Modify CSS for new components
-4. **Tests**: Add corresponding unit tests in `tests/`
-
 ### Testing
 
 ```bash
@@ -265,21 +215,7 @@ The project enforces high code quality standards:
 - **Ruff**: Fast Python linter and formatter
 - **Mypy**: Static type checking
 - **Pre-commit**: Git hooks for automated checks
-- **100% Test Coverage**: Comprehensive unit tests
-
-## 📱 Mobile Responsiveness
-
-The portfolio is fully responsive and optimized for:
-- Desktop (1200px+)
-- Tablet (768px - 1199px)
-- Mobile (320px - 767px)
-
-## 🎯 Performance Features
-
-- **Lazy Loading**: Images and content load as needed
-- **Smooth Animations**: CSS transitions and JavaScript animations
-- **Optimized Assets**: Minified CSS and JavaScript
-- **Fast Loading**: Optimized for quick page loads
+- **Test Coverage**: Comprehensive unit tests
 
 ## 🤝 Contributing
 
