@@ -20,6 +20,7 @@ app.add_middleware(
 )
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
+app.mount("/assets", StaticFiles(directory="assets"), name="assets")
 
 app.include_router(router)
 
@@ -33,7 +34,7 @@ def main() -> None:
 def dev() -> None:
     import uvicorn
 
-    uvicorn.run(app, host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("src.main:app", host="0.0.0.0", port=8000, reload=True)
 
 
 if __name__ == "__main__":

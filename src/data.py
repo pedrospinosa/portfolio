@@ -42,6 +42,15 @@ class Certification(BaseModel):
     issuer: str
 
 
+class Project(BaseModel):
+    name: str
+    description: str
+    technologies: list[str]
+    github: str | None = None
+    pypi: str | None = None
+    image: str | None = None
+
+
 class PersonalInfo(BaseModel):
     name: str
     title: str
@@ -59,6 +68,7 @@ class PortfolioData(BaseModel):
     education: list[Education]
     skills: list[Skill]
     certifications: list[Certification]
+    projects: list[Project]
 
     @model_validator(mode="before")
     @classmethod
