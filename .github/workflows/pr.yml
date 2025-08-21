@@ -27,8 +27,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        uv sync --extra dev
-        uv sync --extra test
+        uv sync --extra dev,test
 
     - name: Run ruff linting
       run: uv run ruff check .
@@ -66,7 +65,8 @@ jobs:
         version: "latest"
 
     - name: Install dependencies
-      run: uv sync
+      run: |
+        uv sync --extra dev
 
     - name: Run bandit security checks
       run: |
@@ -92,7 +92,8 @@ jobs:
         version: "latest"
 
     - name: Install dependencies
-      run: uv sync
+      run: |
+        uv sync --extra test
 
     - name: Start FastAPI application
       run: |
