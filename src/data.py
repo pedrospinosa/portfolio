@@ -3,7 +3,7 @@ import logging
 import yaml
 from pydantic import BaseModel
 
-from .config import DEFAULT_PORTFOLIO_PATH
+from config import DEFAULT_PORTFOLIO_PATH
 
 logger = logging.getLogger(__name__)
 
