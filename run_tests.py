@@ -3,31 +3,25 @@
 Test runner script for the portfolio application.
 """
 
-import sys
 import subprocess
-import os
+import sys
 
 
 def run_tests():
     """Run the test suite."""
     print("🧪 Running portfolio tests...")
-    
+
     # Install test dependencies if needed
     try:
-        import pytest
-        import httpx
+        __import__("pytest")
+        __import__("httpx")
     except ImportError:
         print("📦 Installing test dependencies...")
         subprocess.run([sys.executable, "-m", "uv", "sync", "--extra", "test"], check=True)
-    
+
     # Run tests
-    result = subprocess.run([
-        sys.executable, "-m", "pytest", 
-        "tests/", 
-        "-v", 
-        "--tb=short"
-    ])
-    
+    result = subprocess.run([sys.executable, "-m", "pytest", "tests/", "-v", "--tb=short"])
+
     if result.returncode == 0:
         print("✅ All tests passed!")
     else:

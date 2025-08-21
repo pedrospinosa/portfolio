@@ -4,7 +4,7 @@
 personal:
   name: "John Doe"
   # Missing required fields: title, location, summary, email, linkedin, github, profile
-  
+
 experience: []
 education: []
 skills: []

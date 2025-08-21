@@ -18,6 +18,7 @@ A modern, responsive portfolio website built with FastAPI and Jinja2. **Easily f
 - **Backend**: FastAPI, Python 3.11+
 - **Package Manager**: uv (modern Python package manager)
 - **Data**: YAML configuration with Pydantic validation
+- **Code Quality**: ruff (linting & formatting), mypy (type checking), pre-commit (hooks)
 - **Frontend**: HTML5, CSS3, Vanilla JavaScript
 - **Styling**: Custom CSS with modern design principles
 - **Icons**: Font Awesome
@@ -179,9 +180,31 @@ python -m pytest tests/ --cov=src --cov-report=html
 
 ## 🔧 Development
 
+### Code Quality Tools
+
+This project uses modern code quality tools:
+
+```bash
+# Install development dependencies
+uv sync --extra dev
+
+# Run linting and formatting
+uv run ruff check .
+uv run ruff format .
+
+# Run type checking
+uv run mypy src/
+
+# Run all pre-commit hooks
+uv run pre-commit run --all-files
+
+# Install pre-commit hooks (run once)
+uv run pre-commit install
+```
+
 ### Adding New Features
 
-1. **Backend**: Add new endpoints in `src/main.py`
+1. **Backend**: Add new endpoints in `src/views.py`
 2. **Frontend**: Update templates and static files
 3. **Styling**: Modify CSS for new components
 4. **Tests**: Add corresponding unit tests in `tests/`
@@ -201,6 +224,15 @@ uv run test
 # Or run tests directly
 python -m pytest tests/ -v
 ```
+
+### Code Quality
+
+The project enforces high code quality standards:
+
+- **Ruff**: Fast Python linter and formatter
+- **Mypy**: Static type checking
+- **Pre-commit**: Git hooks for automated checks
+- **100% Test Coverage**: Comprehensive unit tests
 
 ## 📱 Mobile Responsiveness
 

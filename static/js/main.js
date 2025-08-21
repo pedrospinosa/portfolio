@@ -43,7 +43,7 @@ window.addEventListener('scroll', () => {
 window.addEventListener('scroll', () => {
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-link');
-    
+
     let current = '';
     sections.forEach(section => {
         const sectionTop = section.offsetTop;
@@ -66,25 +66,25 @@ const contactForm = document.getElementById('contactForm');
 if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
-        
+
         const formData = new FormData(this);
         const name = formData.get('name');
         const email = formData.get('email');
         const message = formData.get('message');
-        
+
         // Simple validation
         if (!name || !email || !message) {
             alert('Please fill in all fields');
             return;
         }
-        
+
         // Email validation
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
             alert('Please enter a valid email address');
             return;
         }
-        
+
         // Simulate form submission (in a real app, you'd send this to your backend)
         alert('Thank you for your message! I\'ll get back to you soon.');
         this.reset();
@@ -109,7 +109,7 @@ const observer = new IntersectionObserver((entries) => {
 // Observe elements for animation
 document.addEventListener('DOMContentLoaded', () => {
     const animatedElements = document.querySelectorAll('.timeline-item, .skill-category, .education-card, .certification-card');
-    
+
     animatedElements.forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(30px)';
@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function typeWriter(element, text, speed = 100) {
     let i = 0;
     element.innerHTML = '';
-    
+
     function type() {
         if (i < text.length) {
             element.innerHTML += text.charAt(i);
@@ -130,7 +130,7 @@ function typeWriter(element, text, speed = 100) {
             setTimeout(type, speed);
         }
     }
-    
+
     type();
 }
 
@@ -149,7 +149,7 @@ document.querySelectorAll('.skill-tag').forEach(tag => {
         this.style.transform = 'scale(1.05)';
         this.style.transition = 'transform 0.2s ease';
     });
-    
+
     tag.addEventListener('mouseleave', function() {
         this.style.transform = 'scale(1)';
     });
@@ -162,7 +162,7 @@ document.querySelectorAll('.timeline-content').forEach(item => {
         this.style.boxShadow = '0 8px 25px rgba(0, 0, 0, 0.1)';
         this.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease';
     });
-    
+
     item.addEventListener('mouseleave', function() {
         this.style.transform = 'translateY(0)';
         this.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.05)';
@@ -173,8 +173,8 @@ document.querySelectorAll('.timeline-content').forEach(item => {
 window.addEventListener('load', () => {
     document.body.style.opacity = '0';
     document.body.style.transition = 'opacity 0.5s ease';
-    
+
     setTimeout(() => {
         document.body.style.opacity = '1';
     }, 100);
-}); 
+});

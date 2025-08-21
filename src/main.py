@@ -1,7 +1,8 @@
-from fastapi import FastAPI
-from fastapi.staticfiles import StaticFiles
-from fastapi.middleware.cors import CORSMiddleware
 import logging
+
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 
 from .views import router
 
@@ -23,13 +24,17 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 app.include_router(router)
 
 
-def main():
+def main() -> None:
     import uvicorn
+
     uvicorn.run(app, host="0.0.0.0", port=8000)
 
-def dev():
+
+def dev() -> None:
     import uvicorn
+
     uvicorn.run(app, host="0.0.0.0", port=8000, reload=True)
 
+
 if __name__ == "__main__":
-    main() 
+    main()

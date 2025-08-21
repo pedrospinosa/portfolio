@@ -1,20 +1,17 @@
 import pytest
-import os
+import yaml
 from pydantic import ValidationError
 
 from src.data import (
-    load_portfolio_data,
-    PortfolioData,
-    PersonalInfo,
     Experience,
-    Education,
+    PersonalInfo,
+    PortfolioData,
     Skill,
-    Certification
+    load_portfolio_data,
 )
 
 
 class TestPortfolioDataModels:
-    
     def test_personal_info_model(self):
         valid_data = {
             "name": "John Doe",
@@ -24,13 +21,13 @@ class TestPortfolioDataModels:
             "email": "john@example.com",
             "linkedin": "linkedin.com/in/johndoe",
             "github": "github.com/johndoe",
-            "profile": "avatars.githubusercontent.com/u/123"
+            "profile": "avatars.githubusercontent.com/u/123",
         }
-        
+
         personal_info = PersonalInfo(**valid_data)
         assert personal_info.name == "John Doe"
         assert personal_info.email == "john@example.com"
-    
+
     def test_experience_model(self):
         valid_data = {
             "company": "Tech Corp",
@@ -38,23 +35,20 @@ class TestPortfolioDataModels:
             "duration": "2 years",
             "location": "San Francisco, CA",
             "period": "2022-2024",
-            "achievements": ["Built scalable system", "Led team of 5"]
+            "achievements": ["Built scalable system", "Led team of 5"],
         }
-        
+
         experience = Experience(**valid_data)
         assert experience.company == "Tech Corp"
         assert len(experience.achievements) == 2
-    
+
     def test_skill_model(self):
-        valid_data = {
-            "name": "Python",
-            "category": "Programming"
-        }
-        
+        valid_data = {"name": "Python", "category": "Programming"}
+
         skill = Skill(**valid_data)
         assert skill.name == "Python"
         assert skill.category == "Programming"
-    
+
     def test_portfolio_data_model(self):
         valid_data = {
             "personal": {
@@ -65,7 +59,7 @@ class TestPortfolioDataModels:
                 "email": "john@example.com",
                 "linkedin": "linkedin.com/in/johndoe",
                 "github": "github.com/johndoe",
-                "profile": "avatars.githubusercontent.com/u/123"
+                "profile": "avatars.githubusercontent.com/u/123",
             },
             "experience": [
                 {
@@ -74,7 +68,7 @@ class TestPortfolioDataModels:
                     "duration": "2 years",
                     "location": "San Francisco, CA",
                     "period": "2022-2024",
-                    "achievements": ["Built scalable system"]
+                    "achievements": ["Built scalable system"],
                 }
             ],
             "education": [
@@ -82,23 +76,13 @@ class TestPortfolioDataModels:
                     "institution": "University of Tech",
                     "degree": "Computer Science",
                     "period": "2018-2022",
-                    "location": "San Francisco, CA"
+                    "location": "San Francisco, CA",
                 }
             ],
-            "skills": [
-                {
-                    "name": "Python",
-                    "category": "Programming"
-                }
-            ],
-            "certifications": [
-                {
-                    "name": "AWS Certified",
-                    "issuer": "Amazon"
-                }
-            ]
+            "skills": [{"name": "Python", "category": "Programming"}],
+            "certifications": [{"name": "AWS Certified", "issuer": "Amazon"}],
         }
-        
+
         portfolio = PortfolioData(**valid_data)
         assert portfolio.personal.name == "John Doe"
         assert len(portfolio.experience) == 1
@@ -108,11 +92,10 @@ class TestPortfolioDataModels:
 
 
 class TestDataLoading:
-    
     def test_load_valid_yaml(self):
         test_file = "tests/resources/test_portfolio.yml"
         portfolio_data = load_portfolio_data(test_file, use_cache=False)
-        
+
         assert portfolio_data.personal.name == "John Doe"
         assert portfolio_data.personal.email == "john.doe@example.com"
         assert portfolio_data.personal.title == "Software Engineer"
@@ -120,28 +103,28 @@ class TestDataLoading:
         assert len(portfolio_data.education) == 1
         assert len(portfolio_data.skills) == 6
         assert len(portfolio_data.certifications) == 2
-    
+
     def test_load_invalid_yaml(self):
         test_file = "tests/resources/invalid_portfolio.yml"
-        
+
         with pytest.raises(ValidationError):
             load_portfolio_data(test_file, use_cache=False)
-    
+
     def test_load_missing_file(self):
         with pytest.raises(FileNotFoundError):
             load_portfolio_data("/path/to/nonexistent.yml", use_cache=False)
-    
+
     def test_load_malformed_yaml(self):
         test_file = "tests/resources/malformed_portfolio.yml"
-        
-        with pytest.raises(Exception):
+
+        with pytest.raises((yaml.YAMLError, ValueError)):
             load_portfolio_data(test_file, use_cache=False)
 
 
-class TestCaching:    
+class TestCaching:
     def test_caching_behavior(self, monkeypatch):
         call_count = 0
-        
+
         def mock_open(*args, **kwargs):
             nonlocal call_count
             call_count += 1
@@ -158,31 +141,32 @@ experience: []
 education: []
 skills: []
 certifications: []"""
-            
+
             from io import StringIO
+
             return StringIO(yaml_content)
-        
+
         monkeypatch.setattr("builtins.open", mock_open)
-        
+
         import src.data
+
         src.data._portfolio_data = None
-        
+
         result1 = load_portfolio_data()
         assert call_count == 1
         assert result1.personal.name == "Cache Test User"
-        
+
         result2 = load_portfolio_data()
         assert call_count == 1
         assert result1 is result2
 
 
 class TestErrorHandling:
-    
     def test_load_portfolio_data_with_error(self, monkeypatch):
         def mock_open(*args, **kwargs):
             raise FileNotFoundError("Test error")
-        
+
         monkeypatch.setattr("builtins.open", mock_open)
-        
+
         with pytest.raises(FileNotFoundError, match="Test error"):
             load_portfolio_data(use_cache=False)
