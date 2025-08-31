@@ -68,40 +68,53 @@ education:
     period: "2019 - 2023"
     location: "Fortaleza, Ceará, Brazil"
 
-# Skills (organized by category)
+# Skills
 skills:
+  - name: "AWS"
+    category: "Cloud"
+
+  - name: "FastAPI"
+    category: "Backend"
+  - name: "REST APIs"
+    category: "Backend"
+
+  - name: "Docker"
+    category: "DevOps"
+  - name: "MLOps"
+    category: "DevOps"
+  - name: "Containerization"
+    category: "DevOps"
+  - name: "Kubernetes"
+    category: "DevOps"
+
   - name: "Deep Learning"
     category: "AI/ML"
   - name: "NLP/NER"
     category: "AI/ML"
-  - name: "Docker"
-    category: "DevOps"
-  - name: "FastAPI"
-    category: "Backend"
-  - name: "Python"
-    category: "Programming"
   - name: "Machine Learning"
     category: "AI/ML"
-  - name: "MLOps"
-    category: "DevOps"
-  - name: "AWS"
-    category: "Cloud"
-  - name: "REST APIs"
-    category: "Backend"
-  - name: "Containerization"
-    category: "DevOps"
+  - name: "Kubeflow"
+    category: "AI/ML"
+
   - name: "Performance Optimization"
     category: "Engineering"
+
+  - name: "Python"
+    category: "Programming"
+  - name: "Clojure"
+    category: "Programming"
+  - name: "C/C++"
+    category: "Programming"
+  - name: "Rust(learning)"
+    category: "Programming"
+  - name: "Go(learning)"
+    category: "Programming"
+
   - name: "Documentation"
     category: "Soft Skills"
   - name: "Team Collaboration"
     category: "Soft Skills"
-  - name: "Kubernetes"
-    category: "DevOps"
-  - name: "Kubeflow"
-    category: "AI/ML"
-  - name: "Clojure"
-    category: "Programming"
+
 
 # Certifications
 certifications:
