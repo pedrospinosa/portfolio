@@ -61,3 +61,20 @@ You can also trigger deployment manually:
 - The token needs `repo` scope for repository access
 - The token needs `workflow` scope for GitHub Actions
 - The repository needs GitHub Pages enabled in Settings → Pages
+
+## Custom domain (CNAME)
+
+If you use a custom domain (e.g., `pedrospinosa.dev`), you must ensure a `CNAME` file is published with your Pages site on every deploy. Without it, GitHub Pages resets the domain to `*.github.io`.
+
+### This repo's setup
+
+- The deploy workflow uses `peaceiris/actions-gh-pages` with the `cname` input set to `pedrospinosa.dev`. This automatically writes a `CNAME` file into the published site on every deploy.
+- To use a different domain, change the value under `with.cname` in `.github/workflows/deploy.yml`.
+
+### DNS configuration (summary)
+
+- Subdomain (`www.example.com`): Add a CNAME record pointing to `<username>.github.io`.
+- Apex/root (`example.com`): Use ALIAS/ANAME (preferred) pointing to `<username>.github.io`, or A records to GitHub Pages IPs per GitHub docs.
+- Then, in the repository Settings → Pages → Custom domain, set your domain and enable HTTPS.
+
+Refer to GitHub Pages docs for current IPs and detailed steps: `https://docs.github.com/pages/configuring-a-custom-domain-for-your-github-pages-site`
