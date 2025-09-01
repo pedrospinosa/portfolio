@@ -1,4 +1,5 @@
 import logging
+from collections import Counter
 
 import yaml
 from pydantic import BaseModel
@@ -68,6 +69,18 @@ def load_portfolio_data(
         yaml_data = yaml.safe_load(file)
 
     portfolio_data = PortfolioData(**yaml_data)
+
+    try:
+        if portfolio_data.skills:
+            category_counts: Counter[str] = Counter(
+                skill.category for skill in portfolio_data.skills
+            )
+
+            portfolio_data.skills.sort(
+                key=lambda s: (-category_counts.get(s.category, 0), s.name.lower())
+            )
+    except Exception:
+        pass
 
     if use_cache:
         _portfolio_data = portfolio_data
