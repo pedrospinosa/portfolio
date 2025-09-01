@@ -85,6 +85,7 @@ skills:
       - "MLOps"
       - "Containerization"
       - "Kubernetes"
+      - "CI/CD"
 
   - category: "Cloud"
     priority: 2
