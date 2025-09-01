@@ -43,7 +43,6 @@ class PersonalInfo(BaseModel):
     linkedin: str
     github: str
     profile: str
-    contact_form_endpoint: str | None = None
 
 
 class PortfolioData(BaseModel):
