@@ -72,6 +72,7 @@ education:
 skills:
   - name: "AWS"
     category: "Cloud"
+    priority: 2
 
   - name: "FastAPI"
     category: "Backend"
@@ -80,21 +81,29 @@ skills:
 
   - name: "Docker"
     category: "DevOps"
+    priority: 1
   - name: "MLOps"
     category: "DevOps"
+    priority: 1
   - name: "Containerization"
     category: "DevOps"
+    priority: 1
   - name: "Kubernetes"
     category: "DevOps"
+    priority: 1
 
   - name: "Deep Learning"
     category: "AI/ML"
+    priority: 0
   - name: "NLP/NER"
     category: "AI/ML"
+    priority: 0
   - name: "Machine Learning"
     category: "AI/ML"
+    priority: 0
   - name: "Kubeflow"
     category: "AI/ML"
+    priority: 0
 
   - name: "Performance Optimization"
     category: "Engineering"
