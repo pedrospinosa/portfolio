@@ -43,9 +43,7 @@ class TestPortfolioDataModels:
         assert len(experience.achievements) == 2
 
     def test_skill_model(self):
-        valid_data = {"name": "Python", "category": "Programming"}
-
-        skill = Skill(**valid_data)
+        skill = Skill(name="Python", category="Programming")
         assert skill.name == "Python"
         assert skill.category == "Programming"
 

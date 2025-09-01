@@ -102,8 +102,8 @@ def load_portfolio_data(
 
     try:
         portfolio_data.skills = _sort_skills(portfolio_data.skills)
-    except Exception:
-        pass
+    except Exception as exc:
+        logger.warning("Failed to sort skills: %s", exc)
 
     if use_cache:
         _portfolio_data = portfolio_data
