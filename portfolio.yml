@@ -125,8 +125,18 @@ certifications:
 # Projects
 projects:
   - name: "AXL Workflows"
-    description: "Lightweight framework for building data and ML workflows with class-based Python syntax. Compiles workflows into Dagster jobs for local development and Argo Workflows YAML for Kubeflow Pipelines in Kubernetes."
-    technologies: ["Python", "Dagster", "Argo Workflows", "Kubernetes", "ML", "Data Engineering"]
-    github: "github.com/pedrospinosa/axl-workflows"
-    pypi: "pypi.org/project/axl-workflows/"
-    image: "/assets/axl.png"
+    description: "AXL Workflows (axl) is a lightweight framework for building data and ML workflows with a class-based Python syntax. Build a workflow once, then run it locally or on Argo/Kubeflow/Dagster/Airflow."
+    tags: ["Python", "Rust", "Dagster", "Argo Workflows", "Kubeflow", "Airflow", "Kubernetes", "ML", "Data Engineering"]
+    image: "/assets/axl-logo.png"
+    badges:
+      - alt: "PyPI version"
+        image: "https://img.shields.io/pypi/v/axl-workflows.svg?labelColor=ffffff&color=116aea&logo=pypi&logoColor=595959"
+        url: "https://pypi.org/project/axl-workflows/"
+      - alt: "Python versions"
+        image: "https://img.shields.io/pypi/pyversions/axl-workflows.svg?label=python&labelColor=ffffff&color=116aea&logo=python&logoColor=595959"
+        url: "https://pypi.org/project/axl-workflows/"
+    info-tags:
+      - value: "OSS"
+        color: "info"
+      - value: "WIP"
+        color: "warn"
