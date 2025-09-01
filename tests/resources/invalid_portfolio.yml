@@ -7,5 +7,7 @@ personal:
 
 experience: []
 education: []
-skills: []
+skills:
+  - name: "Python"
+    category: "Programming"
 certifications: []

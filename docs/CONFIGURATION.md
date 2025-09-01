@@ -106,30 +106,30 @@ education:
 
 **Required fields:** All fields are required.
 
-### Skills
+### Skills (grouped format)
 
 ```yaml
 skills:
-  - name: "Python"
-    category: "Programming Languages"
-  - name: "FastAPI"
-    category: "Frameworks"
-  - name: "Docker"
-    category: "DevOps"
-  - name: "Machine Learning"
-    category: "AI/ML"
+  - category: "AI/ML"
+    priority: 0            # optional; lower is higher, omit = lowest
+    values:
+      - "Machine Learning"
+      - "Deep Learning"
+
+  - category: "DevOps"
+    priority: 1
+    values:
+      - "Docker"
+      - "Kubernetes"
+
+  - category: "Programming Languages"
+    values:
+      - "Python"
+      - "Go"
 ```
 
-**Required fields:** Both `name` and `category` are required.
-
-**Categories:** Organize skills into meaningful categories like:
-- Programming Languages
-- Frameworks
-- Databases
-- DevOps
-- AI/ML
-- Cloud Platforms
-- Soft Skills
+- `category` and `values` are required.
+- `priority` is optional (integer). Lower numbers are shown first; omitted = lowest.
 
 ### Certifications
 

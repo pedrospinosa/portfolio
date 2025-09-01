@@ -18,16 +18,17 @@ personal:
 experience: []
 education: []
 skills:
-  - name: "Python"
-    category: "Programming"
-  - name: "Rust"
-    category: "Programming"
-  - name: "AWS"
-    category: "Cloud"
-  - name: "GCP"
-    category: "Cloud"
-  - name: "FastAPI"
-    category: "Backend"
+  - category: "Programming"
+    values:
+      - "Python"
+      - "Rust"
+  - category: "Cloud"
+    values:
+      - "AWS"
+      - "GCP"
+  - category: "Backend"
+    values:
+      - "FastAPI"
 certifications: []
 """
 
@@ -63,17 +64,16 @@ personal:
 experience: []
 education: []
 skills:
-  - name: "A1"
-    category: "A"
-  - name: "A2"
-    category: "A"
-  - name: "A3"
-    category: "A"
-  - name: "A4"
-    category: "A"
-  - name: "B1"
-    category: "B"
+  - category: "A"
+    values:
+      - "A1"
+      - "A2"
+      - "A3"
+      - "A4"
+  - category: "B"
     priority: 0
+    values:
+      - "B1"
 certifications: []
 """
 

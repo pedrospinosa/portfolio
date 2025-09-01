@@ -77,7 +77,7 @@ class TestPortfolioDataModels:
                     "location": "San Francisco, CA",
                 }
             ],
-            "skills": [{"name": "Python", "category": "Programming"}],
+            "skills": [{"category": "Programming", "values": ["Python"]}],
             "certifications": [{"name": "AWS Certified", "issuer": "Amazon"}],
         }
 
@@ -105,7 +105,7 @@ class TestDataLoading:
     def test_load_invalid_yaml(self):
         test_file = "tests/resources/invalid_portfolio.yml"
 
-        with pytest.raises(ValidationError):
+        with pytest.raises((ValidationError, ValueError)):
             load_portfolio_data(test_file, use_cache=False)
 
     def test_load_missing_file(self):
