@@ -1,4 +1,5 @@
 import logging
+import math
 from collections import Counter
 
 import yaml
@@ -28,6 +29,7 @@ class Education(BaseModel):
 class Skill(BaseModel):
     name: str
     category: str
+    priority: int | None = None
 
 
 class Certification(BaseModel):
@@ -57,6 +59,34 @@ class PortfolioData(BaseModel):
 _portfolio_data: PortfolioData | None = None
 
 
+def _sort_skills(skills: list[Skill]) -> list[Skill]:
+    """Returns a new list of skills sorted by:
+    1) category max priority (desc), 2) category count (desc), 3) name (asc, case-insensitive).
+
+    Computes per-category counts and max priority in one pass.
+    """
+    if not skills:
+        return []
+
+    category_counts: Counter[str] = Counter(skill.category for skill in skills)
+    category_priority: dict[str, int] = {}
+    for skill in skills:
+        if skill.priority is None:
+            continue
+        existing = category_priority.get(skill.category)
+        if existing is None or skill.priority < existing:
+            category_priority[skill.category] = skill.priority
+
+    return sorted(
+        skills,
+        key=lambda s: (
+            category_priority.get(s.category, math.inf),  # None → infinity (lowest priority)
+            -category_counts.get(s.category, 0),
+            s.name.lower(),
+        ),
+    )
+
+
 def load_portfolio_data(
     profile_path: str = DEFAULT_PORTFOLIO_PATH, use_cache: bool = True
 ) -> PortfolioData:
@@ -71,14 +101,7 @@ def load_portfolio_data(
     portfolio_data = PortfolioData(**yaml_data)
 
     try:
-        if portfolio_data.skills:
-            category_counts: Counter[str] = Counter(
-                skill.category for skill in portfolio_data.skills
-            )
-
-            portfolio_data.skills.sort(
-                key=lambda s: (-category_counts.get(s.category, 0), s.name.lower())
-            )
+        portfolio_data.skills = _sort_skills(portfolio_data.skills)
     except Exception:
         pass
 
