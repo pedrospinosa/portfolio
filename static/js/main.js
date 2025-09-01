@@ -61,33 +61,80 @@ window.addEventListener('scroll', () => {
     });
 });
 
-// Contact form handling
+// Contact form handling with Formspree/static backends and mailto fallback
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
+    contactForm.addEventListener('submit', async function(e) {
         e.preventDefault();
 
+        const statusEl = document.getElementById('contactStatus');
         const formData = new FormData(this);
-        const name = formData.get('name');
-        const email = formData.get('email');
-        const message = formData.get('message');
+        const subject = (formData.get('subject') || '').toString().trim();
+        const message = (formData.get('message') || '').toString().trim();
+        const honeypot = (formData.get('_gotcha') || '').toString().trim();
+        const endpoint = this.getAttribute('action');
 
-        // Simple validation
-        if (!name || !email || !message) {
-            alert('Please fill in all fields');
+        if (statusEl) {
+            statusEl.style.display = 'block';
+            statusEl.textContent = '';
+        }
+
+        // No required fields; both subject and message are optional
+
+        // Honeypot check
+        if (honeypot) {
+            return; // silently drop bots
+        }
+
+        // If no endpoint configured, fallback to mailto
+        if (!endpoint) {
+            const to = (document.querySelector('.contact-info a[href^="mailto:"]')?.getAttribute('href') || 'mailto:').replace('mailto:', '');
+            const qs = [];
+            if (subject) qs.push(`subject=${encodeURIComponent(subject)}`);
+            if (message) qs.push(`body=${encodeURIComponent(message)}`);
+            const query = qs.length ? `?${qs.join('&')}` : '';
+            window.location.href = `mailto:${encodeURIComponent(to)}${query}`;
             return;
         }
 
-        // Email validation
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
-            alert('Please enter a valid email address');
-            return;
-        }
+        try {
+            const submitButton = this.querySelector('button[type="submit"]');
+            if (submitButton) {
+                submitButton.disabled = true;
+                submitButton.textContent = 'Sending...';
+            }
 
-        // Simulate form submission (in a real app, you'd send this to your backend)
-        alert('Thank you for your message! I\'ll get back to you soon.');
-        this.reset();
+            // For Formspree, map subject to _subject if provided
+            if (subject) {
+                formData.set('_subject', subject);
+            }
+
+            const response = await fetch(endpoint, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json'
+                },
+                body: formData
+            });
+
+            if (response.ok) {
+                alert('Thank you for your message! I\'ll get back to you soon.');
+                this.reset();
+                if (statusEl) statusEl.textContent = '';
+            } else {
+                const data = await response.json().catch(() => null);
+                const errorMsg = (data && data.errors && data.errors.map(e => e.message).join(', ')) || 'Something went wrong. Please try again later.';
+                alert(errorMsg);
+            }
+        } catch (err) {
+            alert('Network error. Please try again later.');
+        } finally {
+            const submitButton = this.querySelector('button[type="submit"]');
+            if (submitButton) {
+                submitButton.disabled = false;
+                submitButton.textContent = 'Send Message';
+            }
+        }
     });
 }
 
