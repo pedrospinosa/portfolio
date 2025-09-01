@@ -68,61 +68,50 @@ education:
     period: "2019 - 2023"
     location: "Fortaleza, Ceará, Brazil"
 
-# Skills
+# Skills (grouped format: category, optional priority, and values list)
 skills:
-  - name: "AWS"
-    category: "Cloud"
+  - category: "AI/ML"
+    priority: 0
+    values:
+      - "Deep Learning"
+      - "NLP/NER"
+      - "Machine Learning"
+      - "Kubeflow"
+
+  - category: "DevOps"
+    priority: 1
+    values:
+      - "Docker"
+      - "MLOps"
+      - "Containerization"
+      - "Kubernetes"
+
+  - category: "Cloud"
     priority: 2
+    values:
+      - "AWS"
 
-  - name: "FastAPI"
-    category: "Backend"
-  - name: "REST APIs"
-    category: "Backend"
+  - category: "Backend"
+    values:
+      - "FastAPI"
+      - "REST APIs"
 
-  - name: "Docker"
-    category: "DevOps"
-    priority: 1
-  - name: "MLOps"
-    category: "DevOps"
-    priority: 1
-  - name: "Containerization"
-    category: "DevOps"
-    priority: 1
-  - name: "Kubernetes"
-    category: "DevOps"
-    priority: 1
+  - category: "Programming"
+    values:
+      - "Python"
+      - "Clojure"
+      - "C/C++"
+      - "Rust(learning)"
+      - "Go(learning)"
 
-  - name: "Deep Learning"
-    category: "AI/ML"
-    priority: 0
-  - name: "NLP/NER"
-    category: "AI/ML"
-    priority: 0
-  - name: "Machine Learning"
-    category: "AI/ML"
-    priority: 0
-  - name: "Kubeflow"
-    category: "AI/ML"
-    priority: 0
+  - category: "Engineering"
+    values:
+      - "Performance Optimization"
 
-  - name: "Performance Optimization"
-    category: "Engineering"
-
-  - name: "Python"
-    category: "Programming"
-  - name: "Clojure"
-    category: "Programming"
-  - name: "C/C++"
-    category: "Programming"
-  - name: "Rust(learning)"
-    category: "Programming"
-  - name: "Go(learning)"
-    category: "Programming"
-
-  - name: "Documentation"
-    category: "Soft Skills"
-  - name: "Team Collaboration"
-    category: "Soft Skills"
+  - category: "Soft Skills"
+    values:
+      - "Documentation"
+      - "Team Collaboration"
 
 
 # Certifications

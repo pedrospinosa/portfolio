@@ -1,11 +1,16 @@
 import logging
-import math
-from collections import Counter
 
 import yaml
-from pydantic import BaseModel
+from pydantic import BaseModel, model_validator
 
 from config import DEFAULT_PORTFOLIO_PATH
+
+from .processing import (
+    process_skills as _process_skills,
+)
+from .processing import (
+    sort_skills as _sort_skills,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -55,36 +60,24 @@ class PortfolioData(BaseModel):
     skills: list[Skill]
     certifications: list[Certification]
 
+    @model_validator(mode="before")
+    @classmethod
+    def _normalize_grouped_skills(cls, data: dict[str, object]) -> dict[str, object]:
+        if isinstance(data, dict) and "skills" in data:
+            try:
+                data = data.copy()
+                data["skills"] = _process_skills(data["skills"])
+            except Exception as exc:
+                raise exc
+        return data
+
+    @model_validator(mode="after")
+    def _sort_skills_model(self) -> "PortfolioData":
+        self.skills = _sort_skills(self.skills)
+        return self
+
 
 _portfolio_data: PortfolioData | None = None
-
-
-def _sort_skills(skills: list[Skill]) -> list[Skill]:
-    """Returns a new list of skills sorted by:
-    1) category max priority (desc), 2) category count (desc), 3) name (asc, case-insensitive).
-
-    Computes per-category counts and max priority in one pass.
-    """
-    if not skills:
-        return []
-
-    category_counts: Counter[str] = Counter(skill.category for skill in skills)
-    category_priority: dict[str, int] = {}
-    for skill in skills:
-        if skill.priority is None:
-            continue
-        existing = category_priority.get(skill.category)
-        if existing is None or skill.priority < existing:
-            category_priority[skill.category] = skill.priority
-
-    return sorted(
-        skills,
-        key=lambda s: (
-            category_priority.get(s.category, math.inf),  # None → infinity (lowest priority)
-            -category_counts.get(s.category, 0),
-            s.name.lower(),
-        ),
-    )
 
 
 def load_portfolio_data(
@@ -99,11 +92,6 @@ def load_portfolio_data(
         yaml_data = yaml.safe_load(file)
 
     portfolio_data = PortfolioData(**yaml_data)
-
-    try:
-        portfolio_data.skills = _sort_skills(portfolio_data.skills)
-    except Exception as exc:
-        logger.warning("Failed to sort skills: %s", exc)
 
     if use_cache:
         _portfolio_data = portfolio_data

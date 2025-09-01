@@ -40,20 +40,24 @@ education:
     period: "2016-2020"
     location: "San Francisco, CA"
 
-# Skills (organized by category)
+# Skills (grouped by category)
 skills:
-  - name: "Python"
-    category: "Programming"
-  - name: "JavaScript"
-    category: "Programming"
-  - name: "React"
-    category: "Frontend"
-  - name: "FastAPI"
-    category: "Backend"
-  - name: "Docker"
-    category: "DevOps"
-  - name: "AWS"
-    category: "Cloud"
+  - category: "Programming"
+    values:
+      - "Python"
+      - "JavaScript"
+  - category: "Frontend"
+    values:
+      - "React"
+  - category: "Backend"
+    values:
+      - "FastAPI"
+  - category: "DevOps"
+    values:
+      - "Docker"
+  - category: "Cloud"
+    values:
+      - "AWS"
 
 # Certifications
 certifications:
