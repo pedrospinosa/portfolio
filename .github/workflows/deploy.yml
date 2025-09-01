@@ -65,3 +65,4 @@ jobs:
         # See docs/DEPLOYMENT.md for setup instructions
         github_token: ${{ secrets.GENERAL_GITHUB_PAGES_TOKEN }}
         publish_dir: ./dist
+        cname: pedrospinosa.dev  # If you don't have a custom domain, you can remove this line
