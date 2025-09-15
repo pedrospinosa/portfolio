@@ -440,11 +440,49 @@ section {
     align-items: center;
 }
 
+.project-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
 .project-info h3 {
     font-size: 1.25rem;
     font-weight: 600;
     color: #1f2937;
     margin: 0;
+}
+
+.info-tags {
+    display: inline-flex;
+    gap: 0.4rem;
+}
+
+.info-tag {
+    padding: 0.15rem 0.5rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1;
+    border: 1px solid transparent;
+}
+
+.info-tag.neutral {
+    color: #6b7280;
+    border-color: #e5e7eb;
+    background: #ffffff;
+}
+
+.info-tag.warn {
+    color: #a16207; /* amber-700 */
+    border-color: #fcd34d; /* amber-300 */
+    background: #fff7ed; /* light amber */
+}
+
+.info-tag.info {
+    color: #2563eb; /* blue-600 */
+    border-color: #bfdbfe; /* blue-200 */
+    background: #eff6ff; /* blue-50 */
 }
 
 .project-links {

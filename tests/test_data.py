@@ -52,15 +52,15 @@ class TestPortfolioDataModels:
         valid_data = {
             "name": "Test Project",
             "description": "A test project description",
-            "technologies": ["Python", "FastAPI"],
+            "tags": ["Python", "FastAPI"],
             "github": "github.com/test/project",
             "pypi": "pypi.org/project/test",
         }
 
-        project = Project(**valid_data)
+        project = Project(**valid_data)  # type: ignore[arg-type]
         assert project.name == "Test Project"
         assert project.description == "A test project description"
-        assert len(project.technologies) == 2
+        assert len(project.tags) == 2
         assert project.github == "github.com/test/project"
         assert project.pypi == "pypi.org/project/test"
 
@@ -68,10 +68,10 @@ class TestPortfolioDataModels:
         valid_data = {
             "name": "Test Project",
             "description": "A test project description",
-            "technologies": ["Python"],
+            "tags": ["Python"],
         }
 
-        project = Project(**valid_data)
+        project = Project(**valid_data)  # type: ignore[arg-type]
         assert project.name == "Test Project"
         assert project.github is None
         assert project.pypi is None
@@ -113,7 +113,7 @@ class TestPortfolioDataModels:
                 {
                     "name": "Test Project",
                     "description": "A test project",
-                    "technologies": ["Python"],
+                    "tags": ["Python"],
                 }
             ],
         }

@@ -146,7 +146,16 @@
                             {% endif %}
                         </div>
                         <div class="project-info">
-                            <h3>{{ project.name }}</h3>
+                            <div class="project-title">
+                                <h3>{{ project.name }}</h3>
+                                {% if project.info_tags %}
+                                <div class="info-tags">
+                                    {% for it in project.info_tags %}
+                                    <span class="info-tag {{ it.color }}">{{ it.value }}</span>
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+                            </div>
                             <div class="project-links">
                                 {% if project.github %}
                                 <a href="https://{{ project.github }}" target="_blank" class="project-link-icon" title="GitHub">
@@ -172,8 +181,8 @@
                     {% endif %}
                     <p class="project-description">{{ project.description }}</p>
                     <div class="project-technologies">
-                        {% for tech in project.technologies %}
-                        <span class="tech-tag">{{ tech }}</span>
+                        {% for tag in project.tags %}
+                        <span class="tech-tag">{{ tag }}</span>
                         {% endfor %}
                     </div>
                 </div>

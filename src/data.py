@@ -1,4 +1,5 @@
 import logging
+from typing import Literal
 
 import yaml
 from pydantic import BaseModel, Field, model_validator
@@ -48,14 +49,20 @@ class Badge(BaseModel):
     url: str
 
 
+class InfoTag(BaseModel):
+    value: str
+    color: Literal["neutral", "warn", "info"] = "neutral"
+
+
 class Project(BaseModel):
     name: str
     description: str
-    technologies: list[str]
+    tags: list[str]
     github: str | None = None
     pypi: str | None = None
     image: str | None = None
     badges: list[Badge] = Field(default_factory=list)
+    info_tags: list[InfoTag] = Field(default_factory=list, alias="info-tags")
 
 
 class PersonalInfo(BaseModel):

@@ -70,6 +70,6 @@ certifications:
 projects:
   - name: "Test Project"
     description: "A test project for portfolio testing"
-    technologies: ["Python", "FastAPI", "Docker"]
+    tags: ["Python", "FastAPI", "Docker"]
     github: "github.com/test/project"
     pypi: "pypi.org/project/test-project"
