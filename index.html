@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pedro Spinosa - Portfolio</title>
-    <meta name="description" content="I am a software engineer with a strong background in AI and Machine Learning,
-passionate about building reliable, scalable ML Platform infrastructure and DevOps">
+    <meta name="description" content="Software Engineer with 3 years of experience in Machine Learning infrastructure and platform
+engineering, specializing in building SDKs, workflow orchestration ">
     <link rel="stylesheet" href="./static/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -22,6 +22,7 @@ passionate about building reliable, scalable ML Platform infrastructure and DevO
                 <li><a href="#home" class="nav-link">Home</a></li>
                 <li><a href="#about" class="nav-link">About</a></li>
                 <li><a href="#experience" class="nav-link">Experience</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
                 <li><a href="#skills" class="nav-link">Skills</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
@@ -60,12 +61,13 @@ passionate about building reliable, scalable ML Platform infrastructure and DevO
             <h2 class="section-title">About Me</h2>
             <div class="about-content">
                 <div class="about-text">
-                    <p>I am a software engineer with a strong background in AI and Machine Learning,
-passionate about building reliable, scalable ML Platform infrastructure and DevOps solutions.
-For almost three years, I&#39;ve been working on an AI Platform team, building tools and frameworks
-that boost productivity and scalability for ML and data science teams, contributing to ML operations.
-I aim to apply my skills in software development, ML, and large‑scale production systems to create
-impactful solutions.
+                    <p>Software Engineer with 3 years of experience in Machine Learning infrastructure and platform
+engineering, specializing in building SDKs, workflow orchestration tools, and scalable model
+deployment services. One of the main contributors to Nubank’s internal ML workflow SDK,
+enabling all DS/ML teams to run training and scoring pipelines on Kubeflow. Experienced in managing
+large‑scale Kubernetes clusters, serving both real‑time and batch models, and covering the entire ML
+lifecycle from experimentation to production. Passionate about simplifying ML operations, collaborating
+with ML engineers and researchers, and creating reliable, testable, and maintainable platform solutions.
 </p>
                 </div>
                 <div class="about-stats">
@@ -74,7 +76,7 @@ impactful solutions.
                         <p>Years Experience</p>
                     </div>
                     <div class="stat">
-                        <h3>20</h3>
+                        <h3>21</h3>
                         <p>Skills</p>
                     </div>
                     <div class="stat">
@@ -108,6 +110,8 @@ impactful solutions.
                             <li>Provided ongoing support and enhancements to the current ML development tool, adapting it to meet evolving use cases and optimizing the model training and scoring workflows</li>
                             
                             <li>Developed technical reference materials and documentation for AI infrastructure, conducted tool training for development teams, and maintained ongoing feedback loops with users to continuously improve MLOps solutions</li>
+                            
+                            <li>One of the main contributors to the internal SDK for authoring and orchestrating Data/ML workflows, enabling all DS/ML teams to design, run, and scale workflows seamlessly on Dagster and Kubeflow</li>
                             
                         </ul>
                     </div>
@@ -192,6 +196,10 @@ impactful solutions.
                     <div class="skill-items">
                         
                         
+                        <span class="skill-tag">Dagster</span>
+                        
+                        
+                        
                         <span class="skill-tag">Deep Learning</span>
                         
                         
@@ -245,6 +253,8 @@ impactful solutions.
                 <div class="skill-category">
                     <h3>DevOps</h3>
                     <div class="skill-items">
+                        
+                        
                         
                         
                         
@@ -322,6 +332,8 @@ impactful solutions.
                         
                         
                         
+                        
+                        
                         <span class="skill-tag">AWS</span>
                         
                         
@@ -351,6 +363,8 @@ impactful solutions.
                 <div class="skill-category">
                     <h3>Programming</h3>
                     <div class="skill-items">
+                        
+                        
                         
                         
                         
@@ -440,6 +454,8 @@ impactful solutions.
                         
                         
                         
+                        
+                        
                         <span class="skill-tag">Documentation</span>
                         
                         
@@ -459,6 +475,8 @@ impactful solutions.
                 <div class="skill-category">
                     <h3>Backend</h3>
                     <div class="skill-items">
+                        
+                        
                         
                         
                         
@@ -550,8 +568,84 @@ impactful solutions.
                         
                         
                         
+                        
+                        
                         <span class="skill-tag">Performance Optimization</span>
                         
+                        
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">Projects</h2>
+            <div class="projects-grid">
+                
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            
+                            <img src="/assets/axl-logo.png" alt="AXL Workflows" onerror="console.log('Image failed to load:', this.src); this.style.display='none'; this.nextElementSibling.style.display='flex';" onload="console.log('Image loaded successfully:', this.src);" />
+                            <i class="fab fa-github" style="display: none;"></i>
+                            
+                        </div>
+                        <div class="project-info">
+                            <div class="project-title">
+                                <h3>AXL Workflows</h3>
+                                
+                                <div class="info-tags">
+                                    
+                                    <span class="info-tag info">OSS</span>
+                                    
+                                    <span class="info-tag warn">WIP</span>
+                                    
+                                </div>
+                                
+                            </div>
+                            <div class="project-links">
+                                
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="project-badges">
+                        
+                        <a href="https://pypi.org/project/axl-workflows/" target="_blank" rel="noopener" class="badge-link" title="PyPI version">
+                            <img src="https://img.shields.io/pypi/v/axl-workflows.svg?labelColor=ffffff&amp;color=116aea&amp;logo=pypi&amp;logoColor=595959" alt="PyPI version" class="badge-img" />
+                        </a>
+                        
+                        <a href="https://pypi.org/project/axl-workflows/" target="_blank" rel="noopener" class="badge-link" title="Python versions">
+                            <img src="https://img.shields.io/pypi/pyversions/axl-workflows.svg?label=python&amp;labelColor=ffffff&amp;color=116aea&amp;logo=python&amp;logoColor=595959" alt="Python versions" class="badge-img" />
+                        </a>
+                        
+                    </div>
+                    
+                    <p class="project-description">AXL Workflows (axl) is a lightweight framework for building data and ML workflows with a class-based Python syntax. Build a workflow once, then run it locally or on Argo/Kubeflow/Dagster/Airflow.</p>
+                    <div class="project-technologies">
+                        
+                        <span class="tech-tag">Python</span>
+                        
+                        <span class="tech-tag">Rust</span>
+                        
+                        <span class="tech-tag">Dagster</span>
+                        
+                        <span class="tech-tag">Argo Workflows</span>
+                        
+                        <span class="tech-tag">Kubeflow</span>
+                        
+                        <span class="tech-tag">Airflow</span>
+                        
+                        <span class="tech-tag">Kubernetes</span>
+                        
+                        <span class="tech-tag">ML</span>
+                        
+                        <span class="tech-tag">Data Engineering</span>
                         
                     </div>
                 </div>
@@ -622,7 +716,7 @@ impactful solutions.
                         <i class="fas fa-envelope"></i>
                         <div>
                             <h3>Email</h3>
-                            <a href="mailto:spinosaphb@gmail.com">spinosaphb@gmail.com</a>
+                            <a href="mailto:spinosa.swe@gmail.com">spinosa.swe@gmail.com</a>
                         </div>
                     </div>
                     <div class="contact-item">
