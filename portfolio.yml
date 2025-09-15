@@ -77,6 +77,7 @@ skills:
       - "NLP/NER"
       - "Machine Learning"
       - "Kubeflow"
+      - "Dagster"
 
   - category: "DevOps"
     priority: 1
@@ -124,9 +125,15 @@ certifications:
 
 # Projects
 projects:
+<<<<<<< HEAD
   - name: "AXL Workflows"
     description: "AXL Workflows (axl) is a lightweight framework for building data and ML workflows with a class-based Python syntax. Build a workflow once, then run it locally or on Argo/Kubeflow/Dagster/Airflow."
     tags: ["Python", "Rust", "Dagster", "Argo Workflows", "Kubeflow", "Airflow", "Kubernetes", "ML", "Data Engineering"]
+=======
+  - name: "AXL Workflows (WIP)"
+    description: "AXL Workflows (axl) is a lightweight framework for building data and ML workflows with a class-based Python syntax. Build a workflow once, then run it locally or on Argo/Kubeflow/Dagster/Airflow."
+    technologies: ["Python", "Rust", "Dagster", "Argo Workflows", "Kubeflow", "Airflow", "Kubernetes", "ML", "Data Engineering"]
+>>>>>>> 2e8e6e4 (feat(projects): add badges and UI rendering; tweak section backgrounds\n\n- Add Badge model and badges to Project\n- Render badges before description in project cards\n- Update portfolio.yml with AXL badges\n- Remove badge borders/background; refine hover\n- Adjust section backgrounds (skills grey, projects white, education grey, certifications white))
     image: "/assets/axl-logo.png"
     badges:
       - alt: "PyPI version"
@@ -135,8 +142,11 @@ projects:
       - alt: "Python versions"
         image: "https://img.shields.io/pypi/pyversions/axl-workflows.svg?label=python&labelColor=ffffff&color=116aea&logo=python&logoColor=595959"
         url: "https://pypi.org/project/axl-workflows/"
+<<<<<<< HEAD
     info-tags:
       - value: "OSS"
         color: "info"
       - value: "WIP"
         color: "warn"
+=======
+>>>>>>> 2e8e6e4 (feat(projects): add badges and UI rendering; tweak section backgrounds\n\n- Add Badge model and badges to Project\n- Render badges before description in project cards\n- Update portfolio.yml with AXL badges\n- Remove badge borders/background; refine hover\n- Adjust section backgrounds (skills grey, projects white, education grey, certifications white))

@@ -161,6 +161,15 @@
                             </div>
                         </div>
                     </div>
+                    {% if project.badges %}
+                    <div class="project-badges">
+                        {% for badge in project.badges %}
+                        <a href="{{ badge.url }}" target="_blank" rel="noopener" class="badge-link" title="{{ badge.alt }}">
+                            <img src="{{ badge.image }}" alt="{{ badge.alt }}" class="badge-img" />
+                        </a>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
                     <p class="project-description">{{ project.description }}</p>
                     <div class="project-technologies">
                         {% for tech in project.technologies %}

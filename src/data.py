@@ -1,7 +1,7 @@
 import logging
 
 import yaml
-from pydantic import BaseModel, model_validator
+from pydantic import BaseModel, Field, model_validator
 
 from config import DEFAULT_PORTFOLIO_PATH
 
@@ -42,6 +42,12 @@ class Certification(BaseModel):
     issuer: str
 
 
+class Badge(BaseModel):
+    alt: str
+    image: str
+    url: str
+
+
 class Project(BaseModel):
     name: str
     description: str
@@ -49,6 +55,7 @@ class Project(BaseModel):
     github: str | None = None
     pypi: str | None = None
     image: str | None = None
+    badges: list[Badge] = Field(default_factory=list)
 
 
 class PersonalInfo(BaseModel):
@@ -64,11 +71,11 @@ class PersonalInfo(BaseModel):
 
 class PortfolioData(BaseModel):
     personal: PersonalInfo
-    experience: list[Experience]
-    education: list[Education]
-    skills: list[Skill]
-    certifications: list[Certification]
-    projects: list[Project]
+    experience: list[Experience] = []
+    education: list[Education] = []
+    skills: list[Skill] = []
+    certifications: list[Certification] = []
+    projects: list[Project] = []
 
     @model_validator(mode="before")
     @classmethod

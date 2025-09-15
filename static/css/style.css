@@ -489,6 +489,34 @@ section {
     font-size: 0.95rem;
 }
 
+.project-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.badge-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.badge-link:hover {
+    transform: translateY(-1px);
+    box-shadow: none;
+}
+
+.badge-img {
+    height: 20px;
+    width: auto;
+}
+
 .project-technologies {
     display: flex;
     flex-wrap: wrap;
