@@ -8,13 +8,14 @@ personal:
   title: "ML Engineer @ Nubank | AI Platform | MLOps & Infra"
   location: "Brazil"
   summary: |
-    I am a software engineer with a strong background in AI and Machine Learning,
-    passionate about building reliable, scalable ML Platform infrastructure and DevOps solutions.
-    For almost three years, I've been working on an AI Platform team, building tools and frameworks
-    that boost productivity and scalability for ML and data science teams, contributing to ML operations.
-    I aim to apply my skills in software development, ML, and large‑scale production systems to create
-    impactful solutions.
-  email: "spinosaphb@gmail.com"
+    Software Engineer with 3 years of experience in Machine Learning infrastructure and platform
+    engineering, specializing in building SDKs, workflow orchestration tools, and scalable model
+    deployment services. One of the main contributors to Nubank’s internal ML workflow SDK,
+    enabling all DS/ML teams to run training and scoring pipelines on Kubeflow. Experienced in managing
+    large‑scale Kubernetes clusters, serving both real‑time and batch models, and covering the entire ML
+    lifecycle from experimentation to production. Passionate about simplifying ML operations, collaborating
+    with ML engineers and researchers, and creating reliable, testable, and maintainable platform solutions.
+  email: "spinosa.swe@gmail.com"
   linkedin: "www.linkedin.com/in/pedrospinosa"
   github: "github.com/pedrospinosa"
   profile: "avatars.githubusercontent.com/u/58395143"
@@ -30,6 +31,7 @@ experience:
       - "Built an integration service that enables third-party model deployment within the current infrastructure, supporting the addition of state-of-the-art LLM models and automating the onboarding workflow for external models"
       - "Provided ongoing support and enhancements to the current ML development tool, adapting it to meet evolving use cases and optimizing the model training and scoring workflows"
       - "Developed technical reference materials and documentation for AI infrastructure, conducted tool training for development teams, and maintained ongoing feedback loops with users to continuously improve MLOps solutions"
+      - "One of the main contributors to the internal SDK for authoring and orchestrating Data/ML workflows, enabling all DS/ML teams to design, run, and scale workflows seamlessly on Dagster and Kubeflow"
 
   - company: "Nubank"
     position: "Junior Machine Learning Engineer"
@@ -77,6 +79,7 @@ skills:
       - "NLP/NER"
       - "Machine Learning"
       - "Kubeflow"
+      - "Dagster"
 
   - category: "DevOps"
     priority: 1
@@ -121,3 +124,22 @@ certifications:
     issuer: "AWS"
   - name: "AWS Academy Cloud Foundations"
     issuer: "AWS"
+
+# Projects
+projects:
+  - name: "AXL Workflows"
+    description: "AXL Workflows (axl) is a lightweight framework for building data and ML workflows with a class-based Python syntax. Build a workflow once, then run it locally or on Argo/Kubeflow/Dagster/Airflow."
+    tags: ["Python", "Rust", "Dagster", "Argo Workflows", "Kubeflow", "Airflow", "Kubernetes", "ML", "Data Engineering"]
+    image: "/assets/axl-logo.png"
+    badges:
+      - alt: "PyPI version"
+        image: "https://img.shields.io/pypi/v/axl-workflows.svg?labelColor=ffffff&color=116aea&logo=pypi&logoColor=595959"
+        url: "https://pypi.org/project/axl-workflows/"
+      - alt: "Python versions"
+        image: "https://img.shields.io/pypi/pyversions/axl-workflows.svg?label=python&labelColor=ffffff&color=116aea&logo=python&logoColor=595959"
+        url: "https://pypi.org/project/axl-workflows/"
+    info-tags:
+      - value: "OSS"
+        color: "info"
+      - value: "WIP"
+        color: "warn"

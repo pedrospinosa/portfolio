@@ -6,6 +6,7 @@ from src.data import (
     Experience,
     PersonalInfo,
     PortfolioData,
+    Project,
     Skill,
     load_portfolio_data,
 )
@@ -47,6 +48,35 @@ class TestPortfolioDataModels:
         assert skill.name == "Python"
         assert skill.category == "Programming"
 
+    def test_project_model(self):
+        valid_data = {
+            "name": "Test Project",
+            "description": "A test project description",
+            "tags": ["Python", "FastAPI"],
+            "github": "github.com/test/project",
+            "pypi": "pypi.org/project/test",
+        }
+
+        project = Project(**valid_data)  # type: ignore[arg-type]
+        assert project.name == "Test Project"
+        assert project.description == "A test project description"
+        assert len(project.tags) == 2
+        assert project.github == "github.com/test/project"
+        assert project.pypi == "pypi.org/project/test"
+
+    def test_project_model_minimal(self):
+        valid_data = {
+            "name": "Test Project",
+            "description": "A test project description",
+            "tags": ["Python"],
+        }
+
+        project = Project(**valid_data)  # type: ignore[arg-type]
+        assert project.name == "Test Project"
+        assert project.github is None
+        assert project.pypi is None
+        assert project.image is None
+
     def test_portfolio_data_model(self):
         valid_data = {
             "personal": {
@@ -79,6 +109,13 @@ class TestPortfolioDataModels:
             ],
             "skills": [{"category": "Programming", "values": ["Python"]}],
             "certifications": [{"name": "AWS Certified", "issuer": "Amazon"}],
+            "projects": [
+                {
+                    "name": "Test Project",
+                    "description": "A test project",
+                    "tags": ["Python"],
+                }
+            ],
         }
 
         portfolio = PortfolioData(**valid_data)  # type: ignore
@@ -87,6 +124,8 @@ class TestPortfolioDataModels:
         assert len(portfolio.education) == 1
         assert len(portfolio.skills) == 1
         assert len(portfolio.certifications) == 1
+        assert len(portfolio.projects) == 1
+        assert portfolio.projects[0].name == "Test Project"
 
 
 class TestDataLoading:
@@ -101,6 +140,8 @@ class TestDataLoading:
         assert len(portfolio_data.education) == 1
         assert len(portfolio_data.skills) == 6
         assert len(portfolio_data.certifications) == 2
+        assert len(portfolio_data.projects) == 1
+        assert portfolio_data.projects[0].name == "Test Project"
 
     def test_load_invalid_yaml(self):
         test_file = "tests/resources/invalid_portfolio.yml"
@@ -138,7 +179,8 @@ class TestCaching:
 experience: []
 education: []
 skills: []
-certifications: []"""
+certifications: []
+projects: []"""
 
             from io import StringIO
 

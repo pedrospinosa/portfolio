@@ -1,7 +1,8 @@
 import logging
+from typing import Literal
 
 import yaml
-from pydantic import BaseModel, model_validator
+from pydantic import BaseModel, Field, model_validator
 
 from config import DEFAULT_PORTFOLIO_PATH
 
@@ -42,6 +43,28 @@ class Certification(BaseModel):
     issuer: str
 
 
+class Badge(BaseModel):
+    alt: str
+    image: str
+    url: str
+
+
+class InfoTag(BaseModel):
+    value: str
+    color: Literal["neutral", "warn", "info"] = "neutral"
+
+
+class Project(BaseModel):
+    name: str
+    description: str
+    tags: list[str]
+    github: str | None = None
+    pypi: str | None = None
+    image: str | None = None
+    badges: list[Badge] = Field(default_factory=list)
+    info_tags: list[InfoTag] = Field(default_factory=list, alias="info-tags")
+
+
 class PersonalInfo(BaseModel):
     name: str
     title: str
@@ -55,10 +78,11 @@ class PersonalInfo(BaseModel):
 
 class PortfolioData(BaseModel):
     personal: PersonalInfo
-    experience: list[Experience]
-    education: list[Education]
-    skills: list[Skill]
-    certifications: list[Certification]
+    experience: list[Experience] = []
+    education: list[Education] = []
+    skills: list[Skill] = []
+    certifications: list[Certification] = []
+    projects: list[Project] = []
 
     @model_validator(mode="before")
     @classmethod

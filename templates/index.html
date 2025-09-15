@@ -21,6 +21,7 @@
                 <li><a href="#home" class="nav-link">Home</a></li>
                 <li><a href="#about" class="nav-link">About</a></li>
                 <li><a href="#experience" class="nav-link">Experience</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
                 <li><a href="#skills" class="nav-link">Skills</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
@@ -120,6 +121,68 @@
                         {% if skill.category == category %}
                         <span class="skill-tag">{{ skill.name }}</span>
                         {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">Projects</h2>
+            <div class="projects-grid">
+                {% for project in portfolio.projects %}
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            {% if project.image %}
+                            <img src="{{ project.image }}" alt="{{ project.name }}" onerror="console.log('Image failed to load:', this.src); this.style.display='none'; this.nextElementSibling.style.display='flex';" onload="console.log('Image loaded successfully:', this.src);" />
+                            <i class="fab fa-github" style="display: none;"></i>
+                            {% else %}
+                            <i class="fab fa-github"></i>
+                            {% endif %}
+                        </div>
+                        <div class="project-info">
+                            <div class="project-title">
+                                <h3>{{ project.name }}</h3>
+                                {% if project.info_tags %}
+                                <div class="info-tags">
+                                    {% for it in project.info_tags %}
+                                    <span class="info-tag {{ it.color }}">{{ it.value }}</span>
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+                            </div>
+                            <div class="project-links">
+                                {% if project.github %}
+                                <a href="https://{{ project.github }}" target="_blank" class="project-link-icon" title="GitHub">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                {% endif %}
+                                {% if project.pypi %}
+                                <a href="https://{{ project.pypi }}" target="_blank" class="project-link-icon" title="PyPI">
+                                    <img src="https://pypi.org/static/images/logo-small.8998e9d1.svg" alt="PyPI" class="pypi-icon">
+                                </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    {% if project.badges %}
+                    <div class="project-badges">
+                        {% for badge in project.badges %}
+                        <a href="{{ badge.url }}" target="_blank" rel="noopener" class="badge-link" title="{{ badge.alt }}">
+                            <img src="{{ badge.image }}" alt="{{ badge.alt }}" class="badge-img" />
+                        </a>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    <p class="project-description">{{ project.description }}</p>
+                    <div class="project-technologies">
+                        {% for tag in project.tags %}
+                        <span class="tech-tag">{{ tag }}</span>
                         {% endfor %}
                     </div>
                 </div>

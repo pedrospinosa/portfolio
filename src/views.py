@@ -56,3 +56,10 @@ async def certifications(portfolio_data: PortfolioData = Depends(load_portfolio_
     if portfolio_data is None:
         raise HTTPException(status_code=500, detail="Portfolio data not available")
     return portfolio_data.certifications
+
+
+@router.get("/api/projects")
+async def projects(portfolio_data: PortfolioData = Depends(load_portfolio_data)) -> list[Any]:
+    if portfolio_data is None:
+        raise HTTPException(status_code=500, detail="Portfolio data not available")
+    return portfolio_data.projects
