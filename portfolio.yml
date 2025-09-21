@@ -128,8 +128,8 @@ certifications:
 # Projects
 projects:
   - name: "AXL Workflows"
-    description: "AXL Workflows (axl) is a lightweight framework for building data and ML workflows with a class-based Python syntax. Build a workflow once, then run it locally or on Argo/Kubeflow/Dagster/Airflow."
-    tags: ["Python", "Rust", "Dagster", "Argo Workflows", "Kubeflow", "Airflow", "Kubernetes", "ML", "Data Engineering"]
+    description: "AXL Workflows (axl) is a lightweight framework for building data and ML workflows with a class-based Python syntax. Build a workflow once, then run it locally or on Argo/Kubeflow."
+    tags: ["Python", "Rust", "Argo Workflows", "Kubeflow", "Kubernetes", "ML", "Data Engineering"]
     image: "https://raw.githubusercontent.com/pedrospinosa/common-contents/refs/heads/master/logos/axl-logo.png"
     badges:
       - alt: "PyPI version"
